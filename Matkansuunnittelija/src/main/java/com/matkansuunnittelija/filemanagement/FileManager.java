@@ -9,15 +9,12 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.matkansuunnittelija.TravelPlan;
+import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.Writer;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -25,26 +22,72 @@ import java.util.List;
  * @author Samuli
  */
 public class FileManager {
+
     private final Gson jsonParser = new Gson();
-    private Writer fileWriter;
-    private Reader fileReader;
-    
-    public List<TravelPlan> getTravelPlans() throws IOException
-    {
-        try(Reader reader = new InputStreamReader(FileManager.class.getResourceAsStream("/plans.json"), "UTF-8"))
-        {
-            List<TravelPlan> travelPlans = jsonParser.fromJson(reader, new TypeToken<List<TravelPlan>>(){}.getType());
-            return travelPlans;
-        }
+    private final File jsonFile = new File(FileManager.class.getResource("/plans.json").getFile());
+    private final List<TravelPlan> travelPlans;
+
+    public FileManager() {
+        travelPlans = getTravelPlansFromFile();
     }
-    
-    public void addDayPlanToTravelPlan() throws IOException, URISyntaxException
-    {
-        File jsonFile = new File(FileManager.class.getResource("/plans.json").getFile());
-        
-        List<TravelPlan> travelPlans = getTravelPlans();
-        travelPlans.get(0).addNewDayPlan();
+
+    public TravelPlan getTravelPlan(String name) {
+        for (TravelPlan p : travelPlans) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean doesTravelPlanExist(String name) {
+        return getTravelPlan(name) != null;
+    }
+
+    private void saveDataFile() throws IOException {
         Files.write(jsonParser.toJson(travelPlans), jsonFile, Charsets.UTF_8);
     }
-    
+
+    private List<TravelPlan> getTravelPlansFromFile() {
+        try (Reader reader = new InputStreamReader(FileManager.class.getResourceAsStream("/plans.json"), "UTF-8")) {
+            List<TravelPlan> travelPlans2 = jsonParser.fromJson(reader, new TypeToken<List<TravelPlan>>() {
+                }.getType());
+            return travelPlans2;
+        } catch (IOException ex) {
+            return null;
+        }
+    }
+
+    public List<TravelPlan> getTravelPlans() {
+        return travelPlans;
+    }
+
+    public void addDayPlanToTravelPlan(int index) throws IOException {
+        travelPlans.get(index).addNewDayPlan();
+        Files.write(jsonParser.toJson(travelPlans), jsonFile, Charsets.UTF_8);
+        saveDataFile();
+    }
+
+    public void addDayPlanToTravelPlan(String travelPlanName) throws IOException {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        plan.addNewDayPlan();
+        saveDataFile();
+    }
+
+    public void createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) throws IOException {
+        TravelPlan plan = new TravelPlan(name, startDate, endDate);
+        travelPlans.add(plan);
+        saveDataFile();
+    }
+
+    public void deleteTravelPlan(String travelPlanName) throws IOException {
+        travelPlans.remove(getTravelPlan(travelPlanName));
+        saveDataFile();
+    }
+
+    public void clearAllPlans() throws IOException {
+        travelPlans.clear();
+        saveDataFile();
+    }
+
 }
