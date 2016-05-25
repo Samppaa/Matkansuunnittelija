@@ -48,16 +48,16 @@ public class DayPlanTest {
 
     @Test
     public void testGetName() {
-        assertEquals(dayPlan.getName(), "Test plan 1");
+        assertEquals("Test plan 1", dayPlan.getName());
     }
 
     @Test
     public void testAddDayEventWithSameName() {
-        assertEquals(dayPlan.getDayEvents().size(), 0);
+        assertEquals(0, dayPlan.getDayEvents().size());
         addNewDayEvent();
-        assertEquals(dayPlan.getDayEvents().size(), 1);
+        assertEquals(1, dayPlan.getDayEvents().size());
         addNewDayEvent();
-        assertEquals(dayPlan.getDayEvents().size(), 1);
+        assertEquals(1, dayPlan.getDayEvents().size());
     }
 
     @Test
@@ -65,23 +65,31 @@ public class DayPlanTest {
         dayPlan.addNewDayEvent("Test1", "13:00", "abc");
         dayPlan.addNewDayEvent("Test2", "14:00", "abc");
         List<DayEvent> events = dayPlan.getDayEvents();
-        assertEquals(events.get(0).getName(), "Test1");
-        assertEquals(events.get(1).getName(), "Test2");
+        assertEquals("Test1", events.get(0).getName());
+        assertEquals("Test2", events.get(1).getName());
     }
 
     @Test
     public void testAddNewDayEvent() {
-        assertEquals(dayPlan.getDayEvents().size(), 0);
+        assertEquals(0, dayPlan.getDayEvents().size());
         addNewDayEvent();
-        assertEquals(dayPlan.getDayEvents().size(), 1);
+        assertEquals(1, dayPlan.getDayEvents().size());
     }
 
     @Test
     public void testDeleteDayEvent() {
         addNewDayEvent();
-        assertEquals(dayPlan.getDayEvents().size(), 1);
+        assertEquals(1, dayPlan.getDayEvents().size());
         dayPlan.deleteDayEvent("Event 1");
-        assertEquals(dayPlan.getDayEvents().size(), 0);
+        assertEquals(0, dayPlan.getDayEvents().size());
+    }
+    
+    @Test
+    public void testDeleteDayEventNotExist() {
+        addNewDayEvent();
+        assertEquals(1, dayPlan.getDayEvents().size());
+        dayPlan.deleteDayEvent("Event1234");
+        assertEquals(1, dayPlan.getDayEvents().size());
     }
 
 }

@@ -15,4 +15,7 @@ Lähtökohtana on, että ohjelmassa on vain yksi käyttäjätyyppi, eikä mukana
 - Matkasuunnitelman ottaminen ulos järjestelmästä siistissä tulostettavassa muodossa(mahdollisesti esim html)
 - Matkasuunnitelman budjetoinnin laskenta
 
+##### Määrittelyvaiheen luokkakaavio
+![Luokkakaavio](/luokkakaavio_maarittelyvaihe.png)
+
 

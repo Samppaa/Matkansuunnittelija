@@ -7,6 +7,7 @@ package com.matkansuunnittelija;
 
 import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.filemanagement.FileManager;
+import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -17,8 +18,6 @@ import java.net.URISyntaxException;
 public class MatkanSuunnittelija {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        DayPlan p = new DayPlan("dada");
-        p.addNewDayEvent("test", "asasd", "adsasdasd");
-        p.deleteDayEvent("test");
+        TravelPlan p = new TravelPlan("Test plan", TravelPlan.convertStringToDate("01.01.2012"), TravelPlan.convertStringToDate("05.01.2012"));
     }
 }

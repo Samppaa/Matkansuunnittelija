@@ -19,8 +19,8 @@ public class TravelPlanController {
 
     public FileManager fileManager = new FileManager();
     private final int maxTravelPlanLength = 14;
-
-    public StatusCode createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
+    
+    private StatusCode validateTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
         if (fileManager.doesTravelPlanExist(name)) {
             return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_ALREADY_EXISTS;
         }
@@ -29,6 +29,16 @@ public class TravelPlanController {
         }
         if (startDate.isBefore(endDate)) {
             return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_START_DATE_AFTER_END_DATE;
+        }
+        
+        return StatusCode.STATUS_TRAVEL_PLAN_INFO_OK;
+    }
+
+    public StatusCode createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
+        
+        StatusCode code = validateTravelPlan(name, startDate, endDate);
+        if(code != StatusCode.STATUS_TRAVEL_PLAN_INFO_OK) {
+            return code;
         }
 
         try {

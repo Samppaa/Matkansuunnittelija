@@ -56,40 +56,40 @@ public class FileManagerTest {
 
     @Test
     public void testDoesTravelPlanExist() throws IOException {
-        assertEquals(manager.doesTravelPlanExist("Singapore"), false);
+        assertEquals(false, manager.doesTravelPlanExist("Singapore"));
         addTravelPlan();
-        assertEquals(manager.doesTravelPlanExist("Singapore"), true);
+        assertEquals(true, manager.doesTravelPlanExist("Singapore"));
     }
 
     @Test
     public void testGetTravelPlans() {
         List<TravelPlan> plans = manager.getTravelPlans();
-        assertEquals(plans.size(), 2);
+        assertEquals(2, plans.size());
     }
 
     @Test
     public void testClearAllPlans() throws IOException {
-        assertEquals(manager.getTravelPlans().size(), 2);
+        assertEquals(2, manager.getTravelPlans().size());
         manager.clearAllPlans();
-        assertEquals(manager.getTravelPlans().size(), 0);
+        assertEquals(0, manager.getTravelPlans().size());
     }
 
     @Test
     public void addTravelPlanTest() throws IOException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
-        assertEquals(plans.size(), 3);
-        assertEquals(plans.get(2).getName(), "Singapore");
+        assertEquals(3, plans.size());
+        assertEquals("Singapore", plans.get(2).getName());
     }
 
     @Test
     public void deleteAddedTravelPlanTest() throws IOException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
-        assertEquals(plans.get(2).getName(), "Singapore");
+        assertEquals("Singapore", plans.get(2).getName());
         manager.deleteTravelPlan("Singapore");
-        assertEquals(plans.size(), 2);
-        assertEquals(manager.doesTravelPlanExist("Singapore"), false);
+        assertEquals(2, plans.size());
+        assertEquals(false, manager.doesTravelPlanExist("Singapore"));
     }
 
     @Test

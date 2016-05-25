@@ -62,15 +62,15 @@ public class FileManager {
         return travelPlans;
     }
 
-    public void addDayPlanToTravelPlan(int index) throws IOException {
-        travelPlans.get(index).addNewDayPlan();
+    public void addDayPlanToTravelPlan(int index, String name) throws IOException {
+        travelPlans.get(index).addNewDayPlan(name);
         Files.write(jsonParser.toJson(travelPlans), jsonFile, Charsets.UTF_8);
         saveDataFile();
     }
 
     public void addDayPlanToTravelPlan(String travelPlanName) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
-        plan.addNewDayPlan();
+        plan.addNewDayPlan(travelPlanName);
         saveDataFile();
     }
 

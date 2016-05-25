@@ -7,6 +7,7 @@ package com.matkansuunnittelija.travelplanobjects;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +23,18 @@ public class TravelPlan {
     private DayPlan[] dayPlans;
     private String startDate;
     private String endDate;
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 
     public TravelPlan() {
 
+    }
+    
+    private void initDayPlans(LocalDate startDate, LocalDate endDate)
+    {
+        long daysBetween = DAYS.between(startDate, endDate);
+        for(int i = 0; i <= daysBetween; i++) {
+            this.addNewDayPlan("Day " + Integer.toString(i+1));
+        }
     }
 
     public TravelPlan(String name, LocalDate startDate, LocalDate endDate) {
@@ -32,16 +42,15 @@ public class TravelPlan {
         this.startDate = convertDateToString(startDate);
         this.endDate = convertDateToString(endDate);
         this.dayPlans = new DayPlan[0];
+        initDayPlans(startDate, endDate);
     }
 
-    private String convertDateToString(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("DD.MM.YYYY", Locale.ENGLISH);
-        return date.format(formatter);
+    public static String convertDateToString(LocalDate date) {
+        return date.format(dateTimeFormatter);
     }
 
-    private LocalDate convertStringToDate(String string) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("DD.MM.YYYY", Locale.ENGLISH);
-        return LocalDate.parse(string, formatter);
+    public static LocalDate convertStringToDate(String string) {
+        return LocalDate.parse(string, dateTimeFormatter);
     }
 
     public LocalDate getStartDate() {
@@ -56,11 +65,11 @@ public class TravelPlan {
         return name;
     }
 
-    public DayPlan[] getDayPlans() {
+    private DayPlan[] getDayPlans() {
         return dayPlans;
     }
 
-    private List<DayPlan> getDayPlansAsList() {
+    public List<DayPlan> getDayPlansAsList() {
         return Arrays.asList(dayPlans);
     }
 
@@ -74,13 +83,14 @@ public class TravelPlan {
         return null;
     }
 
-    public void addNewDayPlan() {
+    public void addNewDayPlan(String name) {
         if (dayPlans == null) {
             dayPlans = new DayPlan[0];
         }
-
+        
         List<DayPlan> newDayPlans = new ArrayList<>(Arrays.asList(dayPlans));
-        DayPlan plan = new DayPlan("Test");
+        DayPlan plan = new DayPlan(name);
+        newDayPlans.add(plan);
         dayPlans = new DayPlan[newDayPlans.size()];
         newDayPlans.toArray(dayPlans);
     }
