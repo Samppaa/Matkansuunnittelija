@@ -16,6 +16,6 @@ Lähtökohtana on, että ohjelmassa on vain yksi käyttäjätyyppi, eikä mukana
 - Matkasuunnitelman budjetoinnin laskenta
 
 ##### Määrittelyvaiheen luokkakaavio
-![Luokkakaavio](/luokkakaavio_maarittelyvaihe.png)
+![Luokkakaavio](/dokumentaatio/luokkakaavio_maarittelyvaihe.png)
 
 
