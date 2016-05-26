@@ -23,17 +23,16 @@ public class TravelPlan {
     private DayPlan[] dayPlans;
     private String startDate;
     private String endDate;
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 
     public TravelPlan() {
 
     }
-    
-    private void initDayPlans(LocalDate startDate, LocalDate endDate)
-    {
+
+    private void initDayPlans(LocalDate startDate, LocalDate endDate) {
         long daysBetween = DAYS.between(startDate, endDate);
-        for(int i = 0; i <= daysBetween; i++) {
-            this.addNewDayPlan("Day " + Integer.toString(i+1));
+        for (int i = 0; i <= daysBetween; i++) {
+            this.addNewDayPlan("Day " + Integer.toString(i + 1));
         }
     }
 
@@ -46,11 +45,11 @@ public class TravelPlan {
     }
 
     public static String convertDateToString(LocalDate date) {
-        return date.format(dateTimeFormatter);
+        return date.format(DATE_TIME_FORMATTER);
     }
 
     public static LocalDate convertStringToDate(String string) {
-        return LocalDate.parse(string, dateTimeFormatter);
+        return LocalDate.parse(string, DATE_TIME_FORMATTER);
     }
 
     public LocalDate getStartDate() {
@@ -87,7 +86,7 @@ public class TravelPlan {
         if (dayPlans == null) {
             dayPlans = new DayPlan[0];
         }
-        
+
         List<DayPlan> newDayPlans = new ArrayList<>(Arrays.asList(dayPlans));
         DayPlan plan = new DayPlan(name);
         newDayPlans.add(plan);

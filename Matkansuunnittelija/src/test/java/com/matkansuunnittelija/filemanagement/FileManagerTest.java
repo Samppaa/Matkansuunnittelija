@@ -73,6 +73,22 @@ public class FileManagerTest {
         manager.clearAllPlans();
         assertEquals(0, manager.getTravelPlans().size());
     }
+    
+    @Test
+    public void addDayPlanToTravelPlanTestIndexAndName() throws IOException
+    {
+        assertEquals(9, manager.getTravelPlan("Norway").getDayPlansAsList().size());
+        manager.addDayPlanToTravelPlan(0, "Test1");
+        assertEquals(10, manager.getTravelPlan("Norway").getDayPlansAsList().size());
+    }
+    
+    @Test
+    public void addDayPlanToTravelPlanTestName() throws IOException
+    {
+        assertEquals(9, manager.getTravelPlan("Norway").getDayPlansAsList().size());
+        manager.addDayPlanToTravelPlan("Norway");
+        assertEquals(10, manager.getTravelPlan("Norway").getDayPlansAsList().size());
+    }
 
     @Test
     public void addTravelPlanTest() throws IOException {

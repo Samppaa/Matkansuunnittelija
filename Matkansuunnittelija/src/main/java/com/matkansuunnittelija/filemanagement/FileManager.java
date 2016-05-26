@@ -64,7 +64,6 @@ public class FileManager {
 
     public void addDayPlanToTravelPlan(int index, String name) throws IOException {
         travelPlans.get(index).addNewDayPlan(name);
-        Files.write(jsonParser.toJson(travelPlans), jsonFile, Charsets.UTF_8);
         saveDataFile();
     }
 
