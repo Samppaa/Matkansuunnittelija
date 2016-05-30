@@ -7,9 +7,14 @@ package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.filemanagement.FileManager;
 import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +24,17 @@ public class TravelPlanController {
 
     public FileManager fileManager = new FileManager();
     private final int maxTravelPlanLength = 14;
+    
+    private boolean validateDateFormat(String date) {
+        LocalDate date2;
+        try {
+            date2 = TravelPlan.convertStringToDate(date);
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
+        
+        return date2 != null;
+    }
 
     private StatusCode validateTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
         if (fileManager.doesTravelPlanExist(name)) {
@@ -27,13 +43,23 @@ public class TravelPlanController {
         if (ChronoUnit.DAYS.between(startDate, endDate) > maxTravelPlanLength) {
             return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_DATE_DIFFERENCE_TOO_LONG;
         }
-        if (startDate.isBefore(endDate)) {
+        if (endDate.isBefore(startDate)) {
             return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_START_DATE_AFTER_END_DATE;
         }
 
         return StatusCode.STATUS_TRAVEL_PLAN_INFO_OK;
     }
-
+    
+    public ArrayList<String> getTravelPlanNames()
+    {
+        List<TravelPlan> plans = fileManager.getTravelPlans();
+        ArrayList<String> names = new ArrayList<>();
+        plans.stream().forEach((p) -> {
+            names.add(p.getName());
+        });
+        return names;
+    }
+    
     public StatusCode createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
 
         StatusCode code = validateTravelPlan(name, startDate, endDate);
@@ -48,6 +74,14 @@ public class TravelPlanController {
         }
 
         return StatusCode.STATUS_TRAVEL_PLAN_CREATE_SUCCEED;
+    }
+    
+    public StatusCode createNewTravelPlan(String name, String startDate, String endDate) throws DateTimeParseException {
+
+        if(!validateDateFormat(startDate) || !validateDateFormat(endDate))
+            return StatusCode.STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT;
+        
+        return createNewTravelPlan(name, TravelPlan.convertStringToDate(startDate), TravelPlan.convertStringToDate(endDate));
     }
 
     public boolean deleteTravelPlan(String name) {

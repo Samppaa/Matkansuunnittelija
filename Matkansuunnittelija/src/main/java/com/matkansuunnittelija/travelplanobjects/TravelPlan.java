@@ -5,8 +5,10 @@
  */
 package com.matkansuunnittelija.travelplanobjects;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +38,7 @@ public class TravelPlan {
         }
     }
 
-    public TravelPlan(String name, LocalDate startDate, LocalDate endDate) {
+    public TravelPlan(String name, LocalDate startDate, LocalDate endDate) throws ParseException {
         this.name = name;
         this.startDate = convertDateToString(startDate);
         this.endDate = convertDateToString(endDate);
@@ -44,19 +46,19 @@ public class TravelPlan {
         initDayPlans(startDate, endDate);
     }
 
-    public static String convertDateToString(LocalDate date) {
+    public static String convertDateToString(LocalDate date) throws DateTimeParseException {
         return date.format(DATE_TIME_FORMATTER);
     }
 
-    public static LocalDate convertStringToDate(String string) {
+    public static LocalDate convertStringToDate(String string) throws DateTimeParseException {
         return LocalDate.parse(string, DATE_TIME_FORMATTER);
     }
 
-    public LocalDate getStartDate() {
+    public LocalDate getStartDate() throws DateTimeParseException {
         return convertStringToDate(startDate);
     }
 
-    public LocalDate getEndDate() {
+    public LocalDate getEndDate() throws DateTimeParseException {
         return convertStringToDate(endDate);
     }
 
