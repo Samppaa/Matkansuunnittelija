@@ -24,7 +24,7 @@ public class TravelPlanController {
 
     public FileManager fileManager = new FileManager();
     private final int maxTravelPlanLength = 14;
-    
+
     private boolean validateDateFormat(String date) {
         LocalDate date2;
         try {
@@ -32,7 +32,7 @@ public class TravelPlanController {
         } catch (DateTimeParseException ex) {
             return false;
         }
-        
+
         return date2 != null;
     }
 
@@ -49,9 +49,20 @@ public class TravelPlanController {
 
         return StatusCode.STATUS_TRAVEL_PLAN_INFO_OK;
     }
-    
-    public ArrayList<String> getTravelPlanNames()
-    {
+
+    public List<TravelPlan> getTravelPlans() {
+        return fileManager.getTravelPlans();
+    }
+
+    public TravelPlan getTravelPlan(String name) {
+        return fileManager.getTravelPlan(name);
+    }
+
+    public void clearAllPlans() throws IOException {
+        fileManager.clearAllPlans();
+    }
+
+    public ArrayList<String> getTravelPlanNames() {
         List<TravelPlan> plans = fileManager.getTravelPlans();
         ArrayList<String> names = new ArrayList<>();
         plans.stream().forEach((p) -> {
@@ -59,7 +70,7 @@ public class TravelPlanController {
         });
         return names;
     }
-    
+
     public StatusCode createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
 
         StatusCode code = validateTravelPlan(name, startDate, endDate);
@@ -69,18 +80,19 @@ public class TravelPlanController {
 
         try {
             fileManager.createNewTravelPlan(name, startDate, endDate);
-        } catch (IOException ex) {
+        } catch (IOException | ParseException ex) {
             return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND;
         }
 
         return StatusCode.STATUS_TRAVEL_PLAN_CREATE_SUCCEED;
     }
-    
-    public StatusCode createNewTravelPlan(String name, String startDate, String endDate) throws DateTimeParseException {
 
-        if(!validateDateFormat(startDate) || !validateDateFormat(endDate))
+    public StatusCode createNewTravelPlan(String name, String startDate, String endDate) {
+
+        if (!validateDateFormat(startDate) || !validateDateFormat(endDate)) {
             return StatusCode.STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT;
-        
+        }
+
         return createNewTravelPlan(name, TravelPlan.convertStringToDate(startDate), TravelPlan.convertStringToDate(endDate));
     }
 

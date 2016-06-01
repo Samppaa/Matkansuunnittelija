@@ -34,11 +34,11 @@ public class TravelPlan {
     private void initDayPlans(LocalDate startDate, LocalDate endDate) {
         long daysBetween = DAYS.between(startDate, endDate);
         for (int i = 0; i <= daysBetween; i++) {
-            this.addNewDayPlan("Day " + Integer.toString(i + 1));
+            this.addNewDayPlan("Päivä " + Integer.toString(i + 1));
         }
     }
 
-    public TravelPlan(String name, LocalDate startDate, LocalDate endDate) throws ParseException {
+    public TravelPlan(String name, LocalDate startDate, LocalDate endDate) throws DateTimeParseException {
         this.name = name;
         this.startDate = convertDateToString(startDate);
         this.endDate = convertDateToString(endDate);

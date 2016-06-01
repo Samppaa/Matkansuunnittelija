@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class FileManager {
         saveDataFile();
     }
 
-    public void createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) throws IOException {
+    public void createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) throws IOException, ParseException {
         TravelPlan plan = new TravelPlan(name, startDate, endDate);
         travelPlans.add(plan);
         saveDataFile();

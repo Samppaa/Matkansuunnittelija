@@ -29,7 +29,11 @@
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.jdesktop</groupId>
+            <artifactId>beansbinding</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -48,10 +52,14 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>com.matkansuunnittelija.*</param>
+                        <param>com.matkansuunnittelija.controllers.*</param>
+                        <param>com.matkansuunnittelija.filemanagement.*</param>
+                        <param>com.matkansuunnittelija.travelplanobjects.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>com.matkansuunnittelija.*</param>
+                        <param>com.matkansuunnittelija.controllers.*</param>
+                        <param>com.matkansuunnittelija.filemanagement.*</param>
+                        <param>com.matkansuunnittelija.travelplanobjects.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

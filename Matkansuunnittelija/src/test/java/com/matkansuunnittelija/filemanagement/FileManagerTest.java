@@ -7,6 +7,7 @@ package com.matkansuunnittelija.filemanagement;
 
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
@@ -39,14 +40,14 @@ public class FileManagerTest {
     }
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws IOException, ParseException {
         manager = new FileManager();
         manager.clearAllPlans();
         manager.createNewTravelPlan("Norway", LocalDate.of(2013, 1, 1), LocalDate.of(2013, 1, 9));
         manager.createNewTravelPlan("Hong Kong", LocalDate.of(2013, 1, 1), LocalDate.of(2013, 1, 9));
     }
 
-    private void addTravelPlan() throws IOException {
+    private void addTravelPlan() throws IOException, ParseException {
         manager.createNewTravelPlan("Singapore", LocalDate.of(2013, 1, 1), LocalDate.of(2013, 1, 9));
     }
 
@@ -55,7 +56,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void testDoesTravelPlanExist() throws IOException {
+    public void testDoesTravelPlanExist() throws IOException, ParseException {
         assertEquals(false, manager.doesTravelPlanExist("Singapore"));
         addTravelPlan();
         assertEquals(true, manager.doesTravelPlanExist("Singapore"));
@@ -91,7 +92,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void addTravelPlanTest() throws IOException {
+    public void addTravelPlanTest() throws IOException, ParseException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
         assertEquals(3, plans.size());
@@ -99,7 +100,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void deleteAddedTravelPlanTest() throws IOException {
+    public void deleteAddedTravelPlanTest() throws IOException, ParseException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
         assertEquals("Singapore", plans.get(2).getName());

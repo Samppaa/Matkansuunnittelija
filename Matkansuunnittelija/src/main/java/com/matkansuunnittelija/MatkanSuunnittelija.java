@@ -18,6 +18,6 @@ import java.net.URISyntaxException;
 public class MatkanSuunnittelija {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        TravelPlan p = new TravelPlan("Test plan", TravelPlan.convertStringToDate("01.01.2012"), TravelPlan.convertStringToDate("05.01.2012"));
+        //TravelPlan p = new TravelPlan("Test plan", TravelPlan.convertStringToDate("01.01.2012"), TravelPlan.convertStringToDate("05.01.2012"));
     }
 }

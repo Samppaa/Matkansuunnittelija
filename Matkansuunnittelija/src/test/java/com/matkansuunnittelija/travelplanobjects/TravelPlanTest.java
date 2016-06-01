@@ -5,6 +5,7 @@
  */
 package com.matkansuunnittelija.travelplanobjects;
 
+import java.text.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,7 +33,7 @@ public class TravelPlanTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws ParseException {
         travelPlan = new TravelPlan("Test plan", TravelPlan.convertStringToDate("01.01.2012"), TravelPlan.convertStringToDate("05.01.2012"));
     }
 
