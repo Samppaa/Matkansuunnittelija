@@ -75,6 +75,17 @@ public class DayPlanTest {
         addNewDayEvent();
         assertEquals(1, dayPlan.getDayEvents().size());
     }
+    
+    @Test
+    public void testGetDayEventByNameSuccess() {
+        addNewDayEvent();
+        assertEquals("Event 1", dayPlan.getDayEventWithName("Event 1").getName());
+    }
+    
+    @Test
+    public void testGetDayEventByNameFail() {
+        assertEquals(null, dayPlan.getDayEventWithName("Event 1"));
+    }
 
     @Test
     public void testDeleteDayEvent() {

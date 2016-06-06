@@ -114,4 +114,27 @@ public class TravelPlanControllerTest {
         assertEquals(0, controller.getTravelPlans().size());
     }
     
+    @Test
+    public void testAddDayEventToDayPlanSucceed() {
+        addValidPlan();
+        StatusCode code = controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "13:50", "Description");
+        assertEquals(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_SUCCEED, code);
+        assertEquals(1, controller.getTravelPlan("Test plan").getDayPlan("Päivä 1").getDayEvents().size());
+    }
+    
+    @Test
+    public void testAddDayEventFailWrongDate() {
+        addValidPlan();
+        StatusCode code = controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "25:00", "Description");
+        assertEquals(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT, code);
+    }
+    
+    @Test
+    public void testAddDayEventFailAlreadyExistsWithSameTime() {
+        addValidPlan();
+        controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "13:50", "Description");
+        StatusCode code = controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event2", "13:50", "Description2");
+        assertEquals(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS, code);
+    }
+    
 }

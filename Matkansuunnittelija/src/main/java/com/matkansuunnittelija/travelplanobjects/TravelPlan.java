@@ -74,7 +74,7 @@ public class TravelPlan {
         return Arrays.asList(dayPlans);
     }
 
-    private DayPlan getDayPlan(String name) {
+    public DayPlan getDayPlan(String name) {
         for (DayPlan p : getDayPlansAsList()) {
             if (p.getName().equals(name)) {
                 return p;
@@ -83,6 +83,15 @@ public class TravelPlan {
 
         return null;
     }
+    
+    public void addNewDayEventToDayPlan(String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
+        DayPlan plan = getDayPlan(dayPlanName);
+        if(plan == null) {
+            return;
+        }
+        plan.addNewDayEvent(dayEventName, dayEventTime, dayEventDescription);
+    }
+    
 
     public void addNewDayPlan(String name) {
         if (dayPlans == null) {

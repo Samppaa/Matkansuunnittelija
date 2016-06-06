@@ -28,6 +28,7 @@ public class DayPlan {
     }
 
     public List<DayEvent> getDayEvents() {
+        List<DayEvent> list = Arrays.asList(dayEvents);
         return Arrays.asList(dayEvents);
     }
 
@@ -35,7 +36,7 @@ public class DayPlan {
         return new ArrayList<>(getDayEvents());
     }
 
-    private DayEvent getDayEventWithName(String name) {
+    public DayEvent getDayEventWithName(String name) {
         for (DayEvent e : getDayEvents()) {
             if (e.getName().equals(name)) {
                 return e;
@@ -53,8 +54,23 @@ public class DayPlan {
         if (dayEvents.isEmpty()) {
             this.dayEvents = new DayEvent[0];
         } else {
+            this.dayEvents = new DayEvent[dayEvents.size()];
             dayEvents.toArray(this.dayEvents);
         }
+    }
+    
+    
+    public boolean hasEventWithTime(String time) {
+        if(time.length() > 0) {
+            StringBuilder tempBuffer = new StringBuilder(time);
+            tempBuffer.deleteCharAt(0);
+            for (DayEvent e : dayEvents) {
+                if(e.getTime().equals(time) || e.getTime().equals("0"+time) || e.getTime().equals(tempBuffer.toString())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void addNewDayEvent(String name, String time, String description) {
@@ -71,6 +87,7 @@ public class DayPlan {
         dayEvents = new DayEvent[newDayEvents.size()];
         newDayEvents.toArray(dayEvents);
     }
+    
 
     public void deleteDayEvent(String name) {
         ArrayList<DayEvent> events = getDayEventsAsArrayList();

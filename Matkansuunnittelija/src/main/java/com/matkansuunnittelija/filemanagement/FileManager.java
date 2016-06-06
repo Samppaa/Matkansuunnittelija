@@ -9,6 +9,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +72,24 @@ public class FileManager {
     public void addDayPlanToTravelPlan(String travelPlanName) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
         plan.addNewDayPlan(travelPlanName);
+        saveDataFile();
+    }
+    
+    public boolean dayPlanHasDayEventWithTime(String travelPlanName, String dayPlanName, String time) {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        DayPlan dayPlan = plan.getDayPlan(dayPlanName);
+        return dayPlan.hasEventWithTime(time);
+    }
+    
+    public void addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) throws IOException {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        plan.addNewDayEventToDayPlan(dayPlanName, dayEventName, dayEventTime, dayEventDescription);
+        saveDataFile();
+    }
+    
+    public void deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) throws IOException {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        plan.getDayPlan(dayPlanName).deleteDayEvent(dayEventName);
         saveDataFile();
     }
 

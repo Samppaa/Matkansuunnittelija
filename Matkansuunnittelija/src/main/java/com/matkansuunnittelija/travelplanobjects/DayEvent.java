@@ -29,7 +29,7 @@ public class DayEvent {
             return false;
         }
         DayEvent otherDay = (DayEvent) o;
-        return otherDay.getName().equals(otherDay.getName());
+        return otherDay.getName().equals(this.getName());
     }
 
     @Override

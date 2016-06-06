@@ -9,12 +9,17 @@ import com.matkansuunnittelija.filemanagement.FileManager;
 import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -22,8 +27,15 @@ import java.util.List;
  */
 public class TravelPlanController {
 
-    public FileManager fileManager = new FileManager();
+    private final FileManager fileManager = new FileManager();
     private final int maxTravelPlanLength = 14;
+    private final DateFormat format = new SimpleDateFormat("HH:mm");
+    private final String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+    private final Pattern regExPattern = Pattern.compile(regExTime);
+    
+    public TravelPlanController() {
+        format.setLenient(false);
+    }
 
     private boolean validateDateFormat(String date) {
         LocalDate date2;
@@ -34,6 +46,36 @@ public class TravelPlanController {
         }
 
         return date2 != null;
+    }
+    
+    private boolean validateTimeFormat(String time) {
+        Matcher matcher = regExPattern.matcher(time);
+        return matcher.matches();
+    }
+    
+    public StatusCode deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) {
+        try {
+            fileManager.deleteDayEventFromDayPlan(travelPlanName, dayPlanName, dayEventName);
+        } catch (IOException ex) {
+            return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND;
+        }
+        
+        return StatusCode.STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED;
+    }
+    
+    public StatusCode addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
+        if (!validateTimeFormat(dayEventTime)) {
+            return StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT;
+        }
+        if(fileManager.dayPlanHasDayEventWithTime(travelPlanName, dayPlanName, dayEventTime)) {
+            return StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS;
+        }
+        try {
+            fileManager.addDayEventToDayPlan(travelPlanName, dayPlanName, dayEventName, dayEventTime, dayEventDescription);
+        } catch (IOException ex) {
+            return StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND;
+        }
+        return StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_SUCCEED;
     }
 
     private StatusCode validateTravelPlan(String name, LocalDate startDate, LocalDate endDate) {

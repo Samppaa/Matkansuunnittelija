@@ -17,7 +17,7 @@ import javax.swing.DefaultListModel;
 public class EditTravelPlanGUI extends javax.swing.JDialog {
 
     private DefaultListModel listViewModel;
-    private TravelPlanController controller;
+    private final TravelPlanController controller;
     private TravelPlan plan;
 
     private void initListView() {
@@ -27,9 +27,16 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
             listViewModel.addElement(d.getName());
         }
     }
+    
+    private void updateTravelPlan() {
+        plan = controller.getTravelPlan(plan.getName());
+    }
 
     /**
      * Creates new form EditTravelPlanGUI
+     * @param parent
+     * @param modal
+     * @param travelPlanName
      */
     public EditTravelPlanGUI(java.awt.Frame parent, boolean modal, String travelPlanName) {
         super(parent, modal);
@@ -39,6 +46,24 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
         plan = controller.getTravelPlan(travelPlanName);
         this.setTitle(travelPlanName + " - muokkaus");
         initListView();
+    }
+    
+    private String getSelectedDayName() {
+        int index = jList1.getSelectedIndex();
+        if (index == -1) {
+            return null;
+        }
+        String dayName = (String) listViewModel.getElementAt(index);
+        return dayName;
+    }
+    
+    private void openEditActivitiesWindow() {
+        String selectedDayName = getSelectedDayName();
+        if (selectedDayName != null) {
+            updateTravelPlan();
+            EditDayActivitiesGUI editDayActivities = new EditDayActivitiesGUI(this, true, plan, selectedDayName);
+            editDayActivities.setVisible(true);
+        }
     }
 
     /**
@@ -90,7 +115,7 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        openEditActivitiesWindow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
