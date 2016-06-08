@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija;
 
 /**
- *
+ * Tilakoodi joka helpottaa eri viestien käsittelyä.
+ * Käyttöliittymä voi helposti vastata tilakoodeeihin, joita muut komponentit palauttavat.
  * @author Samuli
  */
 public enum StatusCode {

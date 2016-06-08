@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.filemanagement;
 
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
@@ -117,6 +112,15 @@ public class FileManagerTest {
     @Test
     public void getTravelPlanTestNotExist() {
         assertThat(manager.getTravelPlan("USA"), is(IsNull.nullValue()));
+    }
+    
+    @Test
+    public void deleteDayEventFromDayPlanSucceed() throws IOException, ParseException {
+        addTravelPlan();
+        manager.addDayEventToDayPlan("Singapore", "Päivä 1", "Event 1", "21:00", "abc");
+        assertEquals(manager.getTravelPlan("Singapore").getDayPlan("Päivä 1").getDayEvents().size(), 1);
+        manager.deleteDayEventFromDayPlan("Singapore", "Päivä 1", "Event 1");
+        assertEquals(manager.getTravelPlan("Singapore").getDayPlan("Päivä 1").getDayEvents().size(), 0);
     }
 
 }

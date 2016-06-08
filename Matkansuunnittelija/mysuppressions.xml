@@ -8,4 +8,6 @@
     <suppress files="AddNewTravelPlanGUI.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="EditTravelPlanGUI.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="MatkansuunnittelijaGUI.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="AddNewActivityGUI.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="EditDayActivitiesGUI.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

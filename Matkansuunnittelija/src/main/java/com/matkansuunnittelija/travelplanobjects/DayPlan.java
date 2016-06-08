@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.travelplanobjects;
 
 import java.util.ArrayList;
@@ -10,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Päivä joka sisältyy matkasuunnitelmaan. Päivällä on nimi ja mielivaltainen
+ * määrä aktiviteetteja
  *
  * @author Samuli
  */
@@ -27,6 +24,11 @@ public class DayPlan {
         return name;
     }
 
+    /**
+     * Palauttaa päivän tapahtumat lista-muodossa
+     *
+     * @return lista tapahtumista
+     */
     public List<DayEvent> getDayEvents() {
         List<DayEvent> list = Arrays.asList(dayEvents);
         return Arrays.asList(dayEvents);
@@ -36,6 +38,13 @@ public class DayPlan {
         return new ArrayList<>(getDayEvents());
     }
 
+    /**
+     * Palauttaa tapahtuman tietyllä nimellä, jos tapahtumaa ei löydy, niin
+     * palautetaan null
+     *
+     * @param name
+     * @return DayEvent tapahtuman
+     */
     public DayEvent getDayEventWithName(String name) {
         for (DayEvent e : getDayEvents()) {
             if (e.getName().equals(name)) {
@@ -58,14 +67,19 @@ public class DayPlan {
             dayEvents.toArray(this.dayEvents);
         }
     }
-    
-    
+
+    /**
+     * Tutkii onko päivällä tapahtumaa valittuna kellonaikana
+     *
+     * @param time
+     * @return true tai false riippuen onko tapahtuma olemassa valitulla ajalla
+     */
     public boolean hasEventWithTime(String time) {
-        if(time.length() > 0) {
+        if (time.length() > 0) {
             StringBuilder tempBuffer = new StringBuilder(time);
             tempBuffer.deleteCharAt(0);
             for (DayEvent e : dayEvents) {
-                if(e.getTime().equals(time) || e.getTime().equals("0"+time) || e.getTime().equals(tempBuffer.toString())) {
+                if (e.getTime().equals(time) || e.getTime().equals("0" + time) || e.getTime().equals(tempBuffer.toString())) {
                     return true;
                 }
             }
@@ -73,6 +87,13 @@ public class DayPlan {
         return false;
     }
 
+    /**
+     * Lisää uuden tapahtuman valituilla tiedoilla
+     *
+     * @param name
+     * @param time
+     * @param description
+     */
     public void addNewDayEvent(String name, String time, String description) {
         if (dayEvents == null) {
             dayEvents = new DayEvent[0];
@@ -87,8 +108,12 @@ public class DayPlan {
         dayEvents = new DayEvent[newDayEvents.size()];
         newDayEvents.toArray(dayEvents);
     }
-    
 
+    /**
+     * Poistaa tapahtuman tietyllä nimellä
+     *
+     * @param name
+     */
     public void deleteDayEvent(String name) {
         ArrayList<DayEvent> events = getDayEventsAsArrayList();
         DayEvent e = getDayEventWithName(name);

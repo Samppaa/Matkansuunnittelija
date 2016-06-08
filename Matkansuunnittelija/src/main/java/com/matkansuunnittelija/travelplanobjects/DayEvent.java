@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.travelplanobjects;
 
 import java.util.Objects;
 
 /**
- *
+ * Tapahtuma joita voi sisältyä päiviin mielivaltainen määrä.
+ * Jokaisella tapahtumalla on nimi, kellonaika ja kuvaus.
  * @author Samuli
  */
 public class DayEvent {
@@ -23,6 +19,11 @@ public class DayEvent {
         this.description = description;
     }
 
+    /**
+     * Vertailee kahta DayEvent objectia niiden nimen perusteella
+     * @param o
+     * @return true tai false riippuen siitä onko nimi sama
+     */
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof DayEvent)) {

@@ -1,27 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.controllers.TravelPlanController;
-import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import javax.swing.JOptionPane;
 
 /**
+ * Käyttöliittymäikkuna uuden aktiviteetin lisäämiseen
  *
  * @author Samuli
  */
 public class AddNewActivityGUI extends javax.swing.JDialog {
-    
-    private TravelPlan plan;
-    private String dayPlanName;
-    private TravelPlanController travelPlanController;
-    private EditDayActivitiesGUI parent;
-    
+
+    private final TravelPlan plan;
+    private final String dayPlanName;
+    private final TravelPlanController travelPlanController;
+    private final EditDayActivitiesGUI parent;
 
     /**
      * Creates new form AddNewActivityGUI
@@ -34,10 +28,10 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
         this.dayPlanName = dayPlanName;
         this.travelPlanController = controller;
     }
-    
+
     private void addNewActivity() {
         StatusCode code = travelPlanController.addDayEventToDayPlan(plan.getName(), dayPlanName, jTextField1.getText(), jTextField2.getText(), jTextArea1.getText());
-        switch(code) {
+        switch (code) {
             case STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT:
                 JOptionPane.showMessageDialog(null, "Aika on väärässä muodossa. Oikea muoto: HH:mm(Esimerkiksi 02:20)");
                 break;
@@ -156,7 +150,6 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

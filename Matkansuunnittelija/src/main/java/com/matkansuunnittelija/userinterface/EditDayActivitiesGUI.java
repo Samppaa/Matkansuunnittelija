@@ -1,61 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.controllers.TravelPlanController;
 import com.matkansuunnittelija.travelplanobjects.DayEvent;
-import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
+ * Käyttöliittymäikkuna tietyn päivän aktiviteettien muokkaamiseen
  *
  * @author Samuli
  */
 public class EditDayActivitiesGUI extends javax.swing.JDialog {
-    
-    private TravelPlanController controller;
+
+    private final TravelPlanController controller;
     private DefaultListModel listViewModel;
-    private TravelPlan plan;
-    private String dayPlanName;
-    
+    private final TravelPlan plan;
+    private final String dayPlanName;
+
     private String getListFormattedStringForDayEvent(String name, String time) {
         return name + " - " + time;
     }
-    
+
     private String getNameFromFormattedStringForDayEvent(String formattedString) {
         return formattedString.split(" - ")[0];
     }
-    
+
     private void initListViewWithActivities() {
         listViewModel = (DefaultListModel) jList1.getModel();
         listViewModel.removeAllElements();
-        
+
         for (DayEvent e : plan.getDayPlan(dayPlanName).getDayEvents()) {
             listViewModel.addElement(getListFormattedStringForDayEvent(e.getName(), e.getTime()));
         }
     }
-    
+
     public void addActivityToTheList(String name, String time) {
         listViewModel.addElement(getListFormattedStringForDayEvent(name, time));
     }
-    
+
     private void openAddNewActivityMenu() {
         AddNewActivityGUI addNewActivity = new AddNewActivityGUI(this, true, plan, dayPlanName, controller);
         addNewActivity.setVisible(true);
     }
-    
+
     private String generateTitleForWindow() {
         return plan.getName() + " - " + dayPlanName + " - Aktiviteetit";
     }
 
     /**
      * Creates new form EditDayActivitiesGUI
+     * @param parent
+     * @param modal
+     * @param plan
+     * @param dayPlanName
      */
     public EditDayActivitiesGUI(javax.swing.JDialog parent, boolean modal, TravelPlan plan, String dayPlanName) {
         super(parent, modal);
@@ -63,32 +62,32 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
         this.plan = plan;
         this.dayPlanName = dayPlanName;
         this.setTitle(generateTitleForWindow());
-        MatkansuunnittelijaGUI temp = (MatkansuunnittelijaGUI)parent.getParent();
+        MatkansuunnittelijaGUI temp = (MatkansuunnittelijaGUI) parent.getParent();
         this.controller = temp.getTravelPlanController();
         initListViewWithActivities();
     }
-    
+
     private DayEvent getSelectedEvent() {
         int index = jList1.getSelectedIndex();
-        DayEvent event = controller.getTravelPlan(plan.getName()).getDayPlan(dayPlanName).getDayEventWithName(getNameFromFormattedStringForDayEvent((String)listViewModel.getElementAt(index)));
+        DayEvent event = controller.getTravelPlan(plan.getName()).getDayPlan(dayPlanName).getDayEventWithName(getNameFromFormattedStringForDayEvent((String) listViewModel.getElementAt(index)));
         return event;
     }
-    
+
     private String getDescriptionForSelectedItem() {
         DayEvent event = getSelectedEvent();
-        if(event != null) {
+        if (event != null) {
             return event.getDescription();
         }
-        
+
         return "";
     }
-    
+
     private String getNameForSelectedItem() {
         DayEvent event = getSelectedEvent();
-        if(event != null) {
+        if (event != null) {
             return event.getName();
         }
-        
+
         return "";
     }
 

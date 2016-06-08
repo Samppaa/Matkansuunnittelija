@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.travelplanobjects;
 
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Month;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,6 +49,13 @@ public class TravelPlanTest {
         travelPlan.addNewDayPlan("Test");
         assertEquals(6, travelPlan.getDayPlansAsList().size());
 
+    }
+    
+    @Test
+    public void testConvertDateToStringSucceed() {
+        LocalDate date = LocalDate.of(2010, Month.MARCH, 3);
+        String convertedDate = TravelPlan.convertDateToString(date);
+        assertEquals("03.03.2010", convertedDate);
     }
 
 }

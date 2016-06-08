@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.StatusCode;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import static org.hamcrest.CoreMatchers.is;
-import org.hamcrest.core.IsNull;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -135,6 +126,14 @@ public class TravelPlanControllerTest {
         controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "13:50", "Description");
         StatusCode code = controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event2", "13:50", "Description2");
         assertEquals(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS, code);
+    }
+    
+    @Test
+    public void testDeleteDayEventFromDayPlanSucceed() {
+        addValidPlan();
+        controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "13:50", "Description");
+        StatusCode code = controller.deleteDayEventFromDayPlan("Test plan", "Päivä 1", "Test event");
+        assertEquals(StatusCode.STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED, code);
     }
     
 }
