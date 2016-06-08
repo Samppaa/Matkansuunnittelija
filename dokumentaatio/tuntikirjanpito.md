@@ -9,3 +9,4 @@ Päivä | Tunnit | Kuvaus
 1.6.2016 | 2.0h | Koodin siistimistä, käyttöliittymän jatkamista, muutaman luokan laajentamista
 3.6.2015 | 3.0h | Käyttöliittymän tekoa
 5.6.2015 | 2.0h | Käyttöliittymän tekoa jälleen
+8.6.2015 | 6.0h | Käyttöliittymän tekoa, bugi korjattu, javadocit, kaavion päivitys jne
