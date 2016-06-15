@@ -23,10 +23,6 @@ public class TravelPlan {
     private String endDate;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
 
-    public TravelPlan() {
-
-    }
-
     private void initDayPlans(LocalDate startDate, LocalDate endDate) {
         long daysBetween = DAYS.between(startDate, endDate);
         for (int i = 0; i <= daysBetween; i++) {
@@ -34,6 +30,14 @@ public class TravelPlan {
         }
     }
 
+    /**
+     * Kontruktori joka määrittää matkasuunnitelman tiedot.
+     *
+     * @param name Matkasuunnitelman nimi
+     * @param startDate Matkasuunnitelman aloituspäivämäärä
+     * @param endDate Matkasuunnitelman päättymispäivämäärä
+     * @throws DateTimeParseException Antaa DateTimeParseExceptionin mikäli päivämäärä objektin käsittelyssä tapahtuu virhe
+     */
     public TravelPlan(String name, LocalDate startDate, LocalDate endDate) throws DateTimeParseException {
         this.name = name;
         this.startDate = convertDateToString(startDate);
@@ -41,33 +45,53 @@ public class TravelPlan {
         this.dayPlans = new DayPlan[0];
         initDayPlans(startDate, endDate);
     }
+    
+    public String getStartDateAsString() {
+        return startDate;
+    }
+    
+    public String getEndDateAsString() {
+        return endDate;
+    }
 
     /**
-     * Muuntaa LocalDate tyyppisen objektin String objektiksi
+     * Muuntaa LocalDate tyyppisen objektin String objektiksi.
      *
-     * @param date
+     * @param date Päivämäärä joka muunnetaan
      * @return LocalDate muunnettuna String objektiksi
-     * @throws DateTimeParseException
+     * @throws DateTimeParseException Antaa DateTimeParseExceptionin mikäli päivämäärä objektin käsittelyssä tapahtuu virhe
      */
     public static String convertDateToString(LocalDate date) throws DateTimeParseException {
         return date.format(DATE_TIME_FORMATTER);
     }
 
     /**
-     * Muuttaa String objektin LocalDate objektiksi
+     * Muuttaa String objektin LocalDate objektiksi.
      *
-     * @param string
-     * @return LocalDate
-     * @throws DateTimeParseException
+     * @param string Päivämäärä joka muunnetaan
+     * @return LocalDate Palauttaa LocalDate objektin annetun stringin perusteella
+     * @throws DateTimeParseException Antaa DateTimeParseExceptionin mikäli päivämäärä objektin käsittelyssä tapahtuu virhe
      */
     public static LocalDate convertStringToDate(String string) throws DateTimeParseException {
         return LocalDate.parse(string, DATE_TIME_FORMATTER);
     }
 
+    /**
+     * Palauttaa matkasuunnitelman aloituspäivämäärän.
+     *
+     * @return Matkasuunnitelman aloituspäivämäärä
+     * @throws DateTimeParseException Antaa DateTimeParseExceptionin mikäli päivämäärä objektin käsittelyssä tapahtuu virhe
+     */
     public LocalDate getStartDate() throws DateTimeParseException {
         return convertStringToDate(startDate);
     }
 
+    /**
+     * Palauttaa matkasuunnitelman aloituspäivämäärän.
+     *
+     * @return Matkasuunnitelman päättymispäivämäärä
+     * @throws DateTimeParseException Antaa DateTimeParseExceptionin mikäli päivämäärä objektin käsittelyssä tapahtuu virhe
+     */
     public LocalDate getEndDate() throws DateTimeParseException {
         return convertStringToDate(endDate);
     }
@@ -81,7 +105,7 @@ public class TravelPlan {
     }
 
     /**
-     * Palauttaa matkasuunnitelman päivät listana
+     * Palauttaa matkasuunnitelman päivät listana.
      *
      * @return päivien suunnitelmat listana
      */
@@ -90,11 +114,10 @@ public class TravelPlan {
     }
 
     /**
-     * Palauttaa päivän tietyllä nimellä, jos päivää ei löydy, niin palauttaa
-     * null
+     * Palauttaa päivän tietyllä nimellä.
      *
-     * @param name
-     * @return päivän suunnitelma
+     * @param name Päivän nimi
+     * @return Päivän suunnitelma tai null jos päivää ei löydy
      */
     public DayPlan getDayPlan(String name) {
         for (DayPlan p : getDayPlansAsList()) {
@@ -107,12 +130,12 @@ public class TravelPlan {
     }
 
     /**
-     * Lisää uuden tapahtuman tietylle päivälle
+     * Lisää uuden tapahtuman tietylle päivälle.
      *
-     * @param dayPlanName
-     * @param dayEventName
-     * @param dayEventTime
-     * @param dayEventDescription
+     * @param dayPlanName Päivän nimi
+     * @param dayEventName Tapahtuman nimi
+     * @param dayEventTime Tapahtuman aika
+     * @param dayEventDescription Tapahtuman kuvaus
      */
     public void addNewDayEventToDayPlan(String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
         DayPlan plan = getDayPlan(dayPlanName);
@@ -123,9 +146,9 @@ public class TravelPlan {
     }
 
     /**
-     * Lisää uuden päivän suunnitelmaan
+     * Lisää uuden päivän suunnitelmaan.
      *
-     * @param name
+     * @param name Lisättävän päivän nimi
      */
     public void addNewDayPlan(String name) {
         if (dayPlans == null) {

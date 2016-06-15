@@ -1,8 +1,14 @@
 package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.controllers.TravelPlanController;
+import com.matkansuunnittelija.travelplanobjects.TravelPlan;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 /**
  * Ohjelman pääikkuna jossa näkyy kaikki matkasuunnitelmat ja niille voi tehdä toimintoja
@@ -38,6 +44,19 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
         EditTravelPlanGUI editTravelPlanPanel = new EditTravelPlanGUI(this, true, travelPlanName);
         editTravelPlanPanel.setVisible(true);
     }
+    
+    public void addTravelPlanToMenu(String planName) {
+        listViewModel.addElement(planName);
+    }
+    
+    private boolean hasSelectedPlan() {
+        String plan = getSelectedPlanName();
+        if (plan == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     private String getSelectedPlanName() {
         int index = jList1.getSelectedIndex();
@@ -46,6 +65,39 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
         }
         String planName = (String) listViewModel.getElementAt(index);
         return planName;
+    }
+    
+    private void setFileFilter(JFileChooser chooser) {
+        chooser.setFileFilter(new FileFilter() {
+
+                @Override
+                public String getDescription() {
+                    return "HTML pages (*.html)";
+                }
+
+                @Override
+                public boolean accept(File f) {
+                    if (f.isDirectory()) {
+                        return true;
+                    } else {
+                        String filename = f.getName().toLowerCase();
+                        return filename.endsWith(".html");
+                    }
+                }
+            });
+    }
+    
+    private void createHTMLFileFromPlan(TravelPlan plan, File file) {
+        String fileName = file.toString();
+        if (!fileName.endsWith(".html")) {
+            fileName += ".html";
+        }
+        try (FileWriter fw = new FileWriter(fileName)) {
+            fw.write(travelPlanController.generateHTMLForTravelPlan(plan.getName()));
+            fw.close();
+        } catch (IOException ex) {
+            // Dialog box here
+        }
     }
 
     /**
@@ -59,60 +111,71 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        newTravelPlanButton = new javax.swing.JButton();
+        deleteTravelPlanButton = new javax.swing.JButton();
+        editTravelPlanButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        createPrintableTravelPlanButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Matkasuunnitelmat");
+        setMinimumSize(new java.awt.Dimension(735, 361));
 
         jList1.setModel(new DefaultListModel());
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         jScrollPane2.setViewportView(jList1);
 
-        jButton1.setText("+");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        newTravelPlanButton.setText("+");
+        newTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                newTravelPlanButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Poista valittu suunnittelma");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deleteTravelPlanButton.setText("Poista valittu suunnittelma");
+        deleteTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteTravelPlanButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Muokkaa valittua suunnitelmaa");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        editTravelPlanButton.setText("Muokkaa valittua suunnitelmaa");
+        editTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                editTravelPlanButtonActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Matkasuunnitelmat");
 
+        createPrintableTravelPlanButton.setText("Luo tulostettava versio valitusta matkasuunnitelmasta");
+        createPrintableTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createPrintableTravelPlanButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(deleteTravelPlanButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(createPrintableTravelPlanButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(editTravelPlanButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(newTravelPlanButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,39 +184,54 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(newTravelPlanButton))
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(deleteTravelPlanButton)
+                    .addComponent(editTravelPlanButton)
+                    .addComponent(createPrintableTravelPlanButton))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void newTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTravelPlanButtonActionPerformed
         AddNewTravelPlanGUI addNewTravelPlanPanel = new AddNewTravelPlanGUI(this, true, travelPlanController);
         addNewTravelPlanPanel.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_newTravelPlanButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int index = jList1.getSelectedIndex();
-        String planName = (String) listViewModel.getElementAt(index);
-        travelPlanController.deleteTravelPlan(planName);
-        listViewModel.removeElementAt(index);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void deleteTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTravelPlanButtonActionPerformed
+        if (hasSelectedPlan()) {
+            int index = jList1.getSelectedIndex();
+            String planName = (String) listViewModel.getElementAt(index);
+            travelPlanController.deleteTravelPlan(planName);
+            listViewModel.removeElementAt(index);
+        }
+    }//GEN-LAST:event_deleteTravelPlanButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void editTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTravelPlanButtonActionPerformed
         String selectedPlanName = getSelectedPlanName();
         if (selectedPlanName != null) {
             openEditTravelPlanMenu(selectedPlanName);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_editTravelPlanButtonActionPerformed
+
+    private void createPrintableTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPrintableTravelPlanButtonActionPerformed
+        if (hasSelectedPlan()) {
+            TravelPlan plan = travelPlanController.getTravelPlan(getSelectedPlanName());
+            JFileChooser c = new JFileChooser();
+            setFileFilter(c);
+            int rVal = c.showSaveDialog(this);
+            if (rVal == JFileChooser.APPROVE_OPTION) {
+                createHTMLFileFromPlan(plan, c.getSelectedFile());
+            }
+        }
+    }//GEN-LAST:event_createPrintableTravelPlanButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,12 +269,13 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton createPrintableTravelPlanButton;
+    private javax.swing.JButton deleteTravelPlanButton;
+    private javax.swing.JButton editTravelPlanButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton newTravelPlanButton;
     // End of variables declaration//GEN-END:variables
 }

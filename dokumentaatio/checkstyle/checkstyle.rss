@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 11,
+      <title>File: 16,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,6 +46,20 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.CSSStyleObject.java">com/matkansuunnittelija/generators/CSSStyleObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.StatusCode.java">com/matkansuunnittelija/StatusCode.java</a>
                 </td>
                 <td>
@@ -60,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.travelplanobjects.DayEvent.java">com/matkansuunnittelija/travelplanobjects/DayEvent.java</a>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.HTMLTravelPlanGenerator.java">com/matkansuunnittelija/generators/HTMLTravelPlanGenerator.java</a>
                 </td>
                 <td>
                   0
@@ -75,20 +89,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.travelplanobjects.DayPlan.java">com/matkansuunnittelija/travelplanobjects/DayPlan.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.AddNewTravelPlanGUI.java">com/matkansuunnittelija/userinterface/AddNewTravelPlanGUI.java</a>
                 </td>
                 <td>
                   0
@@ -130,21 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.controllers.TravelPlanController.java">com/matkansuunnittelija/controllers/TravelPlanController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.EditDayActivitiesGUI.java">com/matkansuunnittelija/userinterface/EditDayActivitiesGUI.java</a>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.CSSStyleBuilder.java">com/matkansuunnittelija/generators/CSSStyleBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -173,6 +159,90 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.EditTravelPlanGUI.java">com/matkansuunnittelija/userinterface/EditTravelPlanGUI.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.travelplanobjects.DayEvent.java">com/matkansuunnittelija/travelplanobjects/DayEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.AddNewTravelPlanGUI.java">com/matkansuunnittelija/userinterface/AddNewTravelPlanGUI.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.HTMLTableBuilder.java">com/matkansuunnittelija/generators/HTMLTableBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.controllers.TravelPlanController.java">com/matkansuunnittelija/controllers/TravelPlanController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.EditDayActivitiesGUI.java">com/matkansuunnittelija/userinterface/EditDayActivitiesGUI.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.HTMLBuilder.java">com/matkansuunnittelija/generators/HTMLBuilder.java</a>
                 </td>
                 <td>
                   0

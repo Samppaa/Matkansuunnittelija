@@ -7,11 +7,13 @@ import com.google.gson.reflect.TypeToken;
 import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,17 +23,34 @@ import java.util.List;
 public class FileManager {
 
     private final Gson jsonParser = new Gson();
-    private final File jsonFile = new File(FileManager.class.getResource("/plans.json").getFile());
-    private final List<TravelPlan> travelPlans;
+    private List<TravelPlan> travelPlans;
 
+    /**
+     * Konstruktori joka alustaa matkasuunnitelmat tiedostosta ja luo tiedoston mikäli suunnitelmia ei löydy.
+     */
     public FileManager() {
         travelPlans = getTravelPlansFromFile();
+        if (travelPlans == null) {
+            travelPlans = new ArrayList<>();
+        }
+        createFileIfNotExist();
+    }
+    
+    private void createFileIfNotExist() {
+        File f = new File("plans.json");
+        if (!f.exists()) {
+            try {
+                f.createNewFile();
+            } catch (IOException ex) {
+                
+            }
+        }
     }
 
     /**
-     * Palauttaa matkasuunnitelman jos sellainen löytyy valitulla nimellä
-     * @param name
-     * @return 
+     * Palauttaa matkasuunnitelman jos sellainen löytyy valitulla nimellä.
+     * @param name Haettavan matkasuunnitelman nimi
+     * @return Palauttaa matkasuunnitelman jos se on olemassa, muuten palauttaa null
      */
     public TravelPlan getTravelPlan(String name) {
         for (TravelPlan p : travelPlans) {
@@ -43,20 +62,21 @@ public class FileManager {
     }
 
     /**
-     * Kertoo onko valitun nimistä matkasuunnitelmaa olemassa
-     * @param name
-     * @return 
+     * Kertoo onko valitun nimistä matkasuunnitelmaa olemassa.
+     * @param name Haettavan matkasuunnitelman nimi
+     * @return Palauttaa true jos matkasuunnitelma on olemassa, false jos ei ole
      */
     public boolean doesTravelPlanExist(String name) {
         return getTravelPlan(name) != null;
     }
 
     private void saveDataFile() throws IOException {
-        Files.write(jsonParser.toJson(travelPlans), jsonFile, Charsets.UTF_8);
+        File f = new File("plans.json");
+        Files.write(jsonParser.toJson(travelPlans), f, Charsets.UTF_8);
     }
 
     private List<TravelPlan> getTravelPlansFromFile() {
-        try (Reader reader = new InputStreamReader(FileManager.class.getResourceAsStream("/plans.json"), "UTF-8")) {
+        try (Reader reader = new InputStreamReader(new FileInputStream("plans.json"), "UTF-8")) {
             List<TravelPlan> travelPlans2 = jsonParser.fromJson(reader, new TypeToken<List<TravelPlan>>() {
                 }.getType());
             return travelPlans2;
@@ -66,18 +86,18 @@ public class FileManager {
     }
 
     /**
-     * Palauttaa kaikki matkasuunnitelmat listana
-     * @return travelPlans
+     * Palauttaa kaikki matkasuunnitelmat listana.
+     * @return travelPlans Lista matkasuunnitelmista
      */
     public List<TravelPlan> getTravelPlans() {
         return travelPlans;
     }
 
     /**
-     * Lisää päivän matkasuunnitelmaan valitussa kohtaa
-     * @param index
-     * @param name
-     * @throws IOException 
+     * Lisää päivän matkasuunnitelmaan valitussa kohtaa.
+     * @param index Kohta johon päivä lisätään matkasuunnitelmassa
+     * @param name Lisättävän päivän nimi
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void addDayPlanToTravelPlan(int index, String name) throws IOException {
         travelPlans.get(index).addNewDayPlan(name);
@@ -85,9 +105,9 @@ public class FileManager {
     }
 
     /**
-     * Lisää päivän matkasuunnitelmaan, jolla on valittu nimi
-     * @param travelPlanName
-     * @throws IOException 
+     * Lisää päivän matkasuunnitelmaan, jolla on valittu nimi.
+     * @param travelPlanName Matkasuunnitelman, johon päivä lisään, nimi
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void addDayPlanToTravelPlan(String travelPlanName) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
@@ -96,11 +116,11 @@ public class FileManager {
     }
     
     /**
-     * Palauttaa onko valitun matkasuunnitelman valitulla päivällä tapahtumaa jolla on tietty nimi ja aika
-     * @param travelPlanName
-     * @param dayPlanName
-     * @param time
-     * @return true or false
+     * Palauttaa onko valitun matkasuunnitelman valitulla päivällä tapahtumaa jolla on tietty nimi ja aika.
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @param dayPlanName Matkasuunnitelman sisässä olevan päivän nimi
+     * @param time Matkasuunnitelman päivän sisällä olevan tapahtuman aika
+     * @return Palauttaa true tai false riippuen siitä onko tapahtuma annetulla ajalla olemassa
      */
     public boolean dayPlanHasDayEventWithTime(String travelPlanName, String dayPlanName, String time) {
         TravelPlan plan = getTravelPlan(travelPlanName);
@@ -109,13 +129,13 @@ public class FileManager {
     }
     
     /**
-     * Lisää tapahtuman valitun matkasuunnitelman valitulle päivälle
-     * @param travelPlanName
-     * @param dayPlanName
-     * @param dayEventName
-     * @param dayEventTime
-     * @param dayEventDescription
-     * @throws IOException 
+     * Lisää tapahtuman valitun matkasuunnitelman valitulle päivälle.
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @param dayPlanName Matkasuunnitelman sisällä olevan päivän nimi
+     * @param dayEventName Lisättävän tapahtuman nimi
+     * @param dayEventTime Lisättävän tapahtuman aika
+     * @param dayEventDescription Lisättävän tapahtuman kuvaus
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
@@ -124,11 +144,11 @@ public class FileManager {
     }
     
     /**
-     * Poistaa tapahtuman valitun matkasuunnitelman tietystä päivästä
-     * @param travelPlanName
-     * @param dayPlanName
-     * @param dayEventName
-     * @throws IOException 
+     * Poistaa tapahtuman valitun matkasuunnitelman tietystä päivästä.
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @param dayPlanName Matkasuunnitelman sisällä olevan päivän nimi
+     * @param dayEventName Poistettavan tapahtuman nimi
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
@@ -137,12 +157,12 @@ public class FileManager {
     }
 
     /**
-     * Luo uuden matkasuunnitelman valituilla tiedoilla
-     * @param name
-     * @param startDate
-     * @param endDate
-     * @throws IOException
-     * @throws ParseException 
+     * Luo uuden matkasuunnitelman valituilla tiedoilla.
+     * @param name Matkasuunnitelman nimi
+     * @param startDate Matkasuunnitelman alkamispäivä
+     * @param endDate Matkasuunnitelman päättymispäivä
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
+     * @throws ParseException Antaa ParseExceptionin mikäli päivämäärien muunnoksessa tapahtuu virhe
      */
     public void createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) throws IOException, ParseException {
         TravelPlan plan = new TravelPlan(name, startDate, endDate);
@@ -151,9 +171,9 @@ public class FileManager {
     }
 
     /**
-     * Poistaa matkasuunnitelman tietyllä nimellä
-     * @param travelPlanName
-     * @throws IOException 
+     * Poistaa matkasuunnitelman tietyllä nimellä.
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void deleteTravelPlan(String travelPlanName) throws IOException {
         travelPlans.remove(getTravelPlan(travelPlanName));
@@ -161,8 +181,8 @@ public class FileManager {
     }
 
     /**
-     * Poistaa kaikki matkasuunnitelmat
-     * @throws IOException 
+     * Poistaa kaikki matkasuunnitelmat.
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void clearAllPlans() throws IOException {
         travelPlans.clear();

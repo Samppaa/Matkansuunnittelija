@@ -10,3 +10,7 @@ Päivä | Tunnit | Kuvaus
 3.6.2015 | 3.0h | Käyttöliittymän tekoa
 5.6.2015 | 2.0h | Käyttöliittymän tekoa jälleen
 8.6.2015 | 6.0h | Käyttöliittymän tekoa, bugi korjattu, javadocit, kaavion päivitys jne
+10.6.2015| 5.0h | HTML Generaattorin tekoa
+12.6.2015| 2.0h | HTML Generoinnin tekemistä eteenpäin
+14.6.2015| 4.0h | HTML generointia
+15.6.2015| 4.0h | Sekvenssikaavioita ja muita korjauksia koodiin

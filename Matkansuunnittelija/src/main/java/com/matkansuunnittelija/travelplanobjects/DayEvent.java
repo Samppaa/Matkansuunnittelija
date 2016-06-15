@@ -13,6 +13,12 @@ public class DayEvent {
     private String time;
     private String description;
 
+    /**
+     * Konstruktori joka luo DayEvent tyyppisen olion.
+     * @param name Tapahtuman nimi
+     * @param time Tapahtuman aika
+     * @param description Tapahtuman kuvaus
+     */
     public DayEvent(String name, String time, String description) {
         this.name = name;
         this.time = time;
@@ -20,9 +26,9 @@ public class DayEvent {
     }
 
     /**
-     * Vertailee kahta DayEvent objectia niiden nimen perusteella
-     * @param o
-     * @return true tai false riippuen siitä onko nimi sama
+     * Vertailee kahta DayEvent objectia niiden nimen perusteella.
+     * @param o Objekti jota verrataan tähän olioon
+     * @return True tai false riippuen siitä onko nimi sama
      */
     @Override
     public boolean equals(Object o) {

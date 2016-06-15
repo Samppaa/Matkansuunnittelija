@@ -2,6 +2,7 @@ package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.filemanagement.FileManager;
 import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.generators.HTMLTravelPlanGenerator;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -29,6 +30,9 @@ public class TravelPlanController {
     private final String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
     private final Pattern regExPattern = Pattern.compile(regExTime);
 
+    /**
+     * Konstruktori joka asettaa aikamuodon konfiguraation.
+     */
     public TravelPlanController() {
         format.setLenient(false);
     }
@@ -48,14 +52,24 @@ public class TravelPlanController {
         Matcher matcher = regExPattern.matcher(time);
         return matcher.matches();
     }
+    
+    /**
+     * Luo HTML-sivun matkasuunnitelmalle.
+     *
+     * @param planName Matkasuunnitelman nimi
+     * @return Stringin joka sisältää HTML-sivun matkasuunnitelmasta
+     */
+    public String generateHTMLForTravelPlan(String planName) {
+        return HTMLTravelPlanGenerator.generateHTMLPage(getTravelPlan(planName));
+    }
 
     /**
-     * Poistaa tapahtuman valitun matkasuunnitelman tietystä päivästä
+     * Poistaa tapahtuman valitun matkasuunnitelman tietystä päivästä.
      *
-     * @param travelPlanName
-     * @param dayPlanName
-     * @param dayEventName
-     * @return StatusCode
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @param dayPlanName Matkasuunnitelman sisällä olevan päivän nimi
+     * @param dayEventName Matkasuunnitelman päivän sisällä olevan tapahtuman nimi
+     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui
      */
     public StatusCode deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) {
         try {
@@ -68,14 +82,14 @@ public class TravelPlanController {
     }
 
     /**
-     * Lisää tapahtuman tiedoilla valitun matkasuunnitelman tiettyyn päivään
+     * Lisää tapahtuman tiedoilla valitun matkasuunnitelman tiettyyn päivään.
      *
-     * @param travelPlanName
-     * @param dayPlanName
-     * @param dayEventName
-     * @param dayEventTime
-     * @param dayEventDescription
-     * @return StatusCode
+     * @param travelPlanName Matkasuunnitelman, johon tapahtuma halutaan lisätä, nimi 
+     * @param dayPlanName Matkasuunnitelman sisällä olevan päivän, johon tapahtuma lisätään, nimi
+     * @param dayEventName Tapahtuman nimi
+     * @param dayEventTime Tapahtuman aika
+     * @param dayEventDescription Tapahtuman kuvaus
+     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui
      */
     public StatusCode addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
         if (!validateTimeFormat(dayEventTime)) {
@@ -107,7 +121,7 @@ public class TravelPlanController {
     }
 
     /**
-     * Palauttaa kaikki matkasuunnitelmat
+     * Palauttaa kaikki matkasuunnitelmat.
      *
      * @return kaikki matkasuunnitelmat
      */
@@ -116,28 +130,28 @@ public class TravelPlanController {
     }
 
     /**
-     * Palauttaa matkasuunnitelman nimellä
+     * Palauttaa matkasuunnitelman nimellä.
      *
-     * @param name
-     * @return TravelPlan
+     * @param name Haettavan matkasuunnitelman nimi
+     * @return TravelPlan Palauttaa matkasuunnitelman tai null
      */
     public TravelPlan getTravelPlan(String name) {
         return fileManager.getTravelPlan(name);
     }
 
     /**
-     * Poistaa kaikki matkasuunnitelmat
+     * Poistaa kaikki matkasuunnitelmat.
      *
-     * @throws IOException
+     * @throws IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
      */
     public void clearAllPlans() throws IOException {
         fileManager.clearAllPlans();
     }
 
     /**
-     * Palauttaa matkasuunnitelmien nimet listana
+     * Palauttaa matkasuunnitelmien nimet listana.
      *
-     * @return listan matkasuunnitelmien nimistä
+     * @return Palauttaa listan matkasuunnitelmien nimistä
      */
     public ArrayList<String> getTravelPlanNames() {
         List<TravelPlan> plans = fileManager.getTravelPlans();
@@ -149,12 +163,12 @@ public class TravelPlanController {
     }
 
     /**
-     * Luo uuden matkasuunnitelman valituilla tiedoilla
+     * Luo uuden matkasuunnitelman valituilla tiedoilla.
      *
-     * @param name
-     * @param startDate
-     * @param endDate
-     * @return StatusCode
+     * @param name Matkasuunnitelman nimi
+     * @param startDate Matkasuunnitelman aloituspäivämäärä
+     * @param endDate Matkasuunnitelman lopetuspäivämäärä
+     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui
      */
     public StatusCode createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
 
@@ -173,12 +187,12 @@ public class TravelPlanController {
     }
 
     /**
-     * Luo uuden matkasuunnitelman valituilla tiedoilla
+     * Luo uuden matkasuunnitelman valituilla tiedoilla.
      *
-     * @param name
-     * @param startDate
-     * @param endDate
-     * @return StatusCode
+     * @param name Matkasuunnitelman nimi
+     * @param startDate Matkasuunnitelman aloituspäivämäärä
+     * @param endDate Matkasuunnitelman lopetuspäivämäärä
+     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui
      */
     public StatusCode createNewTravelPlan(String name, String startDate, String endDate) {
 
@@ -190,10 +204,10 @@ public class TravelPlanController {
     }
 
     /**
-     * Poistaa matkasuunnitelman nimen perusteella
+     * Poistaa matkasuunnitelman nimen perusteella.
      *
-     * @param name
-     * @return true tai false riippuen siitä onnistuiko poisto
+     * @param name Poistettavan matkasuunnitelman nimi
+     * @return Palauttaa true tai false riippuen siitä onnistuiko poisto
      */
     public boolean deleteTravelPlan(String name) {
         try {

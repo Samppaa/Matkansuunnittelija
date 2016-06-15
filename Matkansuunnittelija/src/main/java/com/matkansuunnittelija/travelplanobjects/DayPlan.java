@@ -15,6 +15,11 @@ public class DayPlan {
     private final String name;
     private DayEvent[] dayEvents;
 
+    /**
+     * Konstruktori joka luo DayPlan-tyyppisen olion.
+     * 
+     * @param name Luotavan päivän nimi
+     */
     public DayPlan(String name) {
         this.name = name;
         dayEvents = new DayEvent[0];
@@ -25,7 +30,7 @@ public class DayPlan {
     }
 
     /**
-     * Palauttaa päivän tapahtumat lista-muodossa
+     * Palauttaa päivän tapahtumat lista-muodossa.
      *
      * @return lista tapahtumista
      */
@@ -39,11 +44,10 @@ public class DayPlan {
     }
 
     /**
-     * Palauttaa tapahtuman tietyllä nimellä, jos tapahtumaa ei löydy, niin
-     * palautetaan null
+     * Palauttaa tapahtuman tietyllä nimellä.
      *
-     * @param name
-     * @return DayEvent tapahtuman
+     * @param name Haetun tapahtuman nimi
+     * @return DayEvent tapahtuman tai null jos ei löydy
      */
     public DayEvent getDayEventWithName(String name) {
         for (DayEvent e : getDayEvents()) {
@@ -69,10 +73,10 @@ public class DayPlan {
     }
 
     /**
-     * Tutkii onko päivällä tapahtumaa valittuna kellonaikana
+     * Tutkii onko päivällä tapahtumaa valittuna kellonaikana.
      *
-     * @param time
-     * @return true tai false riippuen onko tapahtuma olemassa valitulla ajalla
+     * @param time Aika joka tutkitaan
+     * @return True tai false riippuen onko tapahtuma olemassa valitulla ajalla
      */
     public boolean hasEventWithTime(String time) {
         if (time.length() > 0) {
@@ -88,11 +92,11 @@ public class DayPlan {
     }
 
     /**
-     * Lisää uuden tapahtuman valituilla tiedoilla
+     * Lisää uuden tapahtuman valituilla tiedoilla.
      *
-     * @param name
-     * @param time
-     * @param description
+     * @param name Tapahtuman nimi
+     * @param time Tapahtuman aika
+     * @param description Tapahtuman kuvaus
      */
     public void addNewDayEvent(String name, String time, String description) {
         if (dayEvents == null) {
@@ -110,9 +114,9 @@ public class DayPlan {
     }
 
     /**
-     * Poistaa tapahtuman tietyllä nimellä
+     * Poistaa tapahtuman tietyllä nimellä.
      *
-     * @param name
+     * @param name Poistettavan tapahtuman nimi
      */
     public void deleteDayEvent(String name) {
         ArrayList<DayEvent> events = getDayEventsAsArrayList();

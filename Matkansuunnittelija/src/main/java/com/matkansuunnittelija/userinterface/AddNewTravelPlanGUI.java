@@ -42,7 +42,7 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        createNewTravelPlanButton = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -53,10 +53,10 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
 
         jLabel1.setText("Matkasuunnitelman nimi:");
 
-        jButton2.setText("Luo uusi matkasuunnitelma");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        createNewTravelPlanButton.setText("Luo uusi matkasuunnitelma");
+        createNewTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                createNewTravelPlanButtonActionPerformed(evt);
             }
         });
 
@@ -83,7 +83,7 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(createNewTravelPlanButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
@@ -112,14 +112,14 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addComponent(createNewTravelPlanButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void createNewTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTravelPlanButtonActionPerformed
 
         StatusCode code = travelPlanController.createNewTravelPlan(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
         switch (code) {
@@ -139,58 +139,18 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
                 // Avaa muokkausikkuna tässä
                 this.setVisible(false);
                 this.dispose();
+                this.parent.addTravelPlanToMenu(jTextField1.getText());
                 this.parent.openEditTravelPlanMenu(jTextField1.getText());
                 break;
             case STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT:
                 JOptionPane.showMessageDialog(null, "Päivämäärä on väärää muotoa. Oikea muoto on dd.mm.yyyy. Esimerkiksi 12.11.2012");
                 break;
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_createNewTravelPlanButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddNewTravelPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddNewTravelPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddNewTravelPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddNewTravelPlanGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AddNewTravelPlanGUI dialog = new AddNewTravelPlanGUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton createNewTravelPlanButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
