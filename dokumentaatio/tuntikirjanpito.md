@@ -14,3 +14,4 @@ Päivä | Tunnit | Kuvaus
 12.6.2015| 2.0h | HTML Generoinnin tekemistä eteenpäin
 14.6.2015| 4.0h | HTML generointia
 15.6.2015| 4.0h | Sekvenssikaavioita ja muita korjauksia koodiin
+16.6.2015| 1.0h | Luokkakaavion tekoa

@@ -18,7 +18,9 @@ Lähtökohtana on, että ohjelmassa on vain yksi käyttäjätyyppi, eikä mukana
 ![Luokkakaavio](/dokumentaatio/luokkakaavio.png)
 
 ##### Sekvenssikaaviot
+##### Uuden matkasuunnitelman luonti
 ![Uuden matkasuunnitelman luonti](/dokumentaatio/Matkasuunnitelman_luonti.png)
+##### Uuden aktiviteetin lisääminen valittuun päivään
 ![Uuden aktiviteetin lisäminen valittuun päivään](/dokumentaatio/aktiviteetin_lisaaminen_matkasuunnitelmaan.png)
 
 
