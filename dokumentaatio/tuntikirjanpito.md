@@ -15,3 +15,6 @@ Päivä | Tunnit | Kuvaus
 14.6.2015| 4.0h | HTML generointia
 15.6.2015| 4.0h | Sekvenssikaavioita ja muita korjauksia koodiin
 16.6.2015| 1.0h | Luokkakaavion tekoa
+20.6.2015| 1.0h | Koodin siistimistä
+21.6.2015| 4.0h | TravelPlanControllerin muuntaminen singletoniksi, rakennekuvaus
+

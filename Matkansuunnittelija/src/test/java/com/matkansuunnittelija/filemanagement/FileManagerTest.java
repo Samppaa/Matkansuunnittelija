@@ -49,6 +49,13 @@ public class FileManagerTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void testFileManagerPlansEmptyAtStart() throws IOException {
+        manager.clearAllPlans();
+        FileManager manager2 = new FileManager();
+        assertEquals(0, manager2.getTravelPlans().size());
+    }
 
     @Test
     public void testDoesTravelPlanExist() throws IOException, ParseException {

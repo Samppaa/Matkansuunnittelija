@@ -41,7 +41,7 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
     }
 
     private void openAddNewActivityMenu() {
-        AddNewActivityGUI addNewActivity = new AddNewActivityGUI(this, true, plan, dayPlanName, controller);
+        AddNewActivityGUI addNewActivity = new AddNewActivityGUI(this, true, plan, dayPlanName);
         addNewActivity.setVisible(true);
     }
 
@@ -62,8 +62,7 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
         this.plan = plan;
         this.dayPlanName = dayPlanName;
         this.setTitle(generateTitleForWindow());
-        MatkansuunnittelijaGUI temp = (MatkansuunnittelijaGUI) parent.getParent();
-        this.controller = temp.getTravelPlanController();
+        this.controller = TravelPlanController.getInstance();
         initListViewWithActivities();
     }
 

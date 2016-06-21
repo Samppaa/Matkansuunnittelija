@@ -18,15 +18,10 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
      *
      * @param parent
      */
-    public AddNewTravelPlanGUI(java.awt.Frame parent, boolean modal, TravelPlanController controller) {
-        super(parent, modal);
-        this.parent = (MatkansuunnittelijaGUI) parent;
-        travelPlanController = controller;
-        initComponents();
-    }
-
     public AddNewTravelPlanGUI(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.parent = (MatkansuunnittelijaGUI) parent;
+        travelPlanController = TravelPlanController.getInstance();
         initComponents();
     }
 

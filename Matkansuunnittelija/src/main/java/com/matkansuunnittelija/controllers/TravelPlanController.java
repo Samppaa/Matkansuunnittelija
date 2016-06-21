@@ -5,9 +5,7 @@ import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.generators.HTMLTravelPlanGenerator;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
@@ -26,15 +24,27 @@ public class TravelPlanController {
 
     private final FileManager fileManager = new FileManager();
     private final int maxTravelPlanLength = 14;
-    private final DateFormat format = new SimpleDateFormat("HH:mm");
     private final String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
     private final Pattern regExPattern = Pattern.compile(regExTime);
+    private static TravelPlanController travelPlanControllerSingleton = null;
+    
+    /**
+     * Staattinen metodi, joka palauttaa singleton(ainoan) instancen luokasta.
+     * @return Ainoa olemassa oleva olio TravelPlanControllerista
+     */
+    public static TravelPlanController getInstance() {
+        if (travelPlanControllerSingleton == null) {
+            travelPlanControllerSingleton = new TravelPlanController();
+        }
+        
+        return travelPlanControllerSingleton;
+    }
 
     /**
-     * Konstruktori joka asettaa aikamuodon konfiguraation.
+     * Konstruktori on protected, koska kyseessä on singleton luokka.
      */
-    public TravelPlanController() {
-        format.setLenient(false);
+    protected TravelPlanController() {
+        
     }
 
     private boolean validateDateFormat(String date) {

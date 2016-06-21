@@ -57,5 +57,20 @@ public class TravelPlanTest {
         String convertedDate = TravelPlan.convertDateToString(date);
         assertEquals("03.03.2010", convertedDate);
     }
+    
+    @Test
+    public void testGetTravelPlanStartDate() {
+        assertEquals(TravelPlan.convertStringToDate("01.01.2012"), travelPlan.getStartDate());
+    }
+    
+    @Test
+    public void testGetTravelPlanEndDate() {
+        assertEquals(TravelPlan.convertStringToDate("05.01.2012"), travelPlan.getEndDate());
+    }
+    
+    @Test
+    public void testGetDayPlanNotExist() {
+        assertEquals(null, travelPlan.getDayPlan("non-existing dayplan"));
+    }
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi_FI" lang="fi_FI">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>AddNewActivityGUI xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -28,13 +28,13 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">     * Creates new form AddNewActivityGUI</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/userinterface/AddNewActivityGUI.html">AddNewActivityGUI</a>(<a href="../../../com/matkansuunnittelija/userinterface/EditDayActivitiesGUI.html">EditDayActivitiesGUI</a> parent, <strong class="jxr_keyword">boolean</strong> modal, <a href="../../../com/matkansuunnittelija/travelplanobjects/TravelPlan.html">TravelPlan</a> plan, String dayPlanName, <a href="../../../com/matkansuunnittelija/controllers/TravelPlanController.html">TravelPlanController</a> controller) {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/userinterface/AddNewActivityGUI.html">AddNewActivityGUI</a>(<a href="../../../com/matkansuunnittelija/userinterface/EditDayActivitiesGUI.html">EditDayActivitiesGUI</a> parent, <strong class="jxr_keyword">boolean</strong> modal, <a href="../../../com/matkansuunnittelija/travelplanobjects/TravelPlan.html">TravelPlan</a> plan, String dayPlanName) {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>          <strong class="jxr_keyword">super</strong>(parent, modal);
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>          initComponents();
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>          <strong class="jxr_keyword">this</strong>.parent = parent;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">this</strong>.plan = plan;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>          <strong class="jxr_keyword">this</strong>.dayPlanName = dayPlanName;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">this</strong>.travelPlanController = controller;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">this</strong>.travelPlanController = TravelPlanController.getInstance();
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addNewActivity() {

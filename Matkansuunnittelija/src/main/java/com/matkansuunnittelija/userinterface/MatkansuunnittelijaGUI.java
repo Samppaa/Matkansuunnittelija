@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileFilter;
 public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
 
     private DefaultListModel listViewModel;
-    private final TravelPlanController travelPlanController = new TravelPlanController();
+    private final TravelPlanController travelPlanController = TravelPlanController.getInstance();
 
     private void initListView() {
         listViewModel = (DefaultListModel) jList1.getModel();
@@ -201,7 +201,7 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTravelPlanButtonActionPerformed
-        AddNewTravelPlanGUI addNewTravelPlanPanel = new AddNewTravelPlanGUI(this, true, travelPlanController);
+        AddNewTravelPlanGUI addNewTravelPlanPanel = new AddNewTravelPlanGUI(this, true);
         addNewTravelPlanPanel.setVisible(true);
     }//GEN-LAST:event_newTravelPlanButtonActionPerformed
 

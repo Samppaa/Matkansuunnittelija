@@ -97,5 +97,16 @@ public class DayPlanTest {
         dayPlan.deleteDayEvent("Event1234");
         assertEquals(1, dayPlan.getDayEvents().size());
     }
+    
+    @Test
+    public void testHasDayEventWithTimeFail() {
+        assertEquals(false, dayPlan.hasEventWithTime("23:52"));
+    }
+    
+    @Test
+    public void testHasDayEventWithTimeSucceed() {
+        addNewDayEvent();
+        assertEquals(true, dayPlan.hasEventWithTime("13:00"));
+    }
 
 }

@@ -20,13 +20,13 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
     /**
      * Creates new form AddNewActivityGUI
      */
-    public AddNewActivityGUI(EditDayActivitiesGUI parent, boolean modal, TravelPlan plan, String dayPlanName, TravelPlanController controller) {
+    public AddNewActivityGUI(EditDayActivitiesGUI parent, boolean modal, TravelPlan plan, String dayPlanName) {
         super(parent, modal);
         initComponents();
         this.parent = parent;
         this.plan = plan;
         this.dayPlanName = dayPlanName;
-        this.travelPlanController = controller;
+        this.travelPlanController = TravelPlanController.getInstance();
     }
 
     private void addNewActivity() {

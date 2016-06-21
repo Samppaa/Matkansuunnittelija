@@ -1,6 +1,9 @@
 package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.generators.HTMLTravelPlanGenerator;
+import com.matkansuunnittelija.travelplanobjects.TravelPlan;
+import java.io.File;
 import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,7 +33,7 @@ public class TravelPlanControllerTest {
     
     @Before
     public void setUp() throws IOException {
-        controller = new TravelPlanController();
+        controller = TravelPlanController.getInstance();
         controller.clearAllPlans();
     }
     
@@ -134,6 +137,15 @@ public class TravelPlanControllerTest {
         controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test event", "13:50", "Description");
         StatusCode code = controller.deleteDayEventFromDayPlan("Test plan", "Päivä 1", "Test event");
         assertEquals(StatusCode.STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED, code);
+    }
+    
+    @Test
+    public void generateHTMLForTravelPlanTest() {
+        controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
+        controller.addDayEventToDayPlan("Test plan", "Päivä 1", "Test 1", "05:30", "Test desc");
+        controller.addDayEventToDayPlan("Test plan", "Päivä 2", "Test 2", "05:35", "Test desc2");
+        String wanted = "<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable, th, td {\nborder: 1px solid black;\nborder-collapse: collapse;\n}\nth, td {\npadding: 5px;\ntext-align: left;\n}\n</style>\n</head>\n<h1>Test plan 01.01.2012 - 02.01.2012</h1>\n<br>\n<h3>Päivä 1</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:30</td>\n<td>Test 1</td>\n<td>Test desc</td>\n</tr>\n</table>\n<h3>Päivä 2</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:35</td>\n<td>Test 2</td>\n<td>Test desc2</td>\n</tr>\n</table>\n</body>\n</html>";
+        assertEquals(wanted, controller.generateHTMLForTravelPlan("Test plan"));
     }
     
 }

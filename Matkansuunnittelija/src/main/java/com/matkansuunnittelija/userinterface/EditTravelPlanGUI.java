@@ -36,8 +36,7 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
     public EditTravelPlanGUI(java.awt.Frame parent, boolean modal, String travelPlanName) {
         super(parent, modal);
         initComponents();
-        MatkansuunnittelijaGUI temp = (MatkansuunnittelijaGUI) parent;
-        controller = temp.getTravelPlanController();
+        controller = TravelPlanController.getInstance();
         plan = controller.getTravelPlan(travelPlanName);
         this.setTitle(travelPlanName + " - muokkaus");
         initListView();
