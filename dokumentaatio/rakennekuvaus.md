@@ -1,6 +1,6 @@
 ## Rakennekuvaus
 
-Matkansuunnittekuha-ohjelma koostuu neljästä pääalueesta: 
+Matkansuunnittelija-ohjelma koostuu neljästä pääalueesta: 
 - HTMLDocumentin generointiin vaadittavista luokista
     - HTMLBuilder.java - Tarjoaa HTML-sivun luomiseen tarvittavat metodit
     - CSSStyleBuilder.java - Mahdollistaa CSS-tyylin luomisen
