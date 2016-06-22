@@ -41,7 +41,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="planArchivedLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="archivePlanButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="newTravelPlanButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -56,6 +60,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="newTravelPlanButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="planArchivedLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="archivePlanButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="194" max="-2" attributes="0"/>
@@ -80,13 +86,16 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="travelPlanList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new DefaultListModel()" type="code"/>
             </Property>
             <Property name="selectionMode" type="int" value="1"/>
           </Properties>
+          <Events>
+            <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="travelPlanListValueChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -130,6 +139,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createPrintableTravelPlanButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="planArchivedLabel">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Valittu suunnitelma on arkistoitu ja sit&#xe4; ei voi muokata"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="archivePlanButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Arkistoi suunnitelma"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="archivePlanButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

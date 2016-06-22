@@ -28,7 +28,7 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
     }
 
     private void initListViewWithActivities() {
-        listViewModel = (DefaultListModel) jList1.getModel();
+        listViewModel = (DefaultListModel) activitiesList.getModel();
         listViewModel.removeAllElements();
 
         for (DayEvent e : plan.getDayPlan(dayPlanName).getDayEvents()) {
@@ -67,7 +67,7 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
     }
 
     private DayEvent getSelectedEvent() {
-        int index = jList1.getSelectedIndex();
+        int index = activitiesList.getSelectedIndex();
         DayEvent event = controller.getTravelPlan(plan.getName()).getDayPlan(dayPlanName).getDayEventWithName(getNameFromFormattedStringForDayEvent((String) listViewModel.getElementAt(index)));
         return event;
     }
@@ -100,48 +100,48 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        activitiesList = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        activityDescriptionTextArea = new javax.swing.JTextArea();
+        activityDescriptionLabel = new javax.swing.JLabel();
+        addNewActivityButton = new javax.swing.JButton();
+        deleteSelectedActivityButton = new javax.swing.JButton();
+        activitiesLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jList1.setModel(new DefaultListModel());
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        activitiesList.setModel(new DefaultListModel());
+        activitiesList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 dayActivitySelected(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(activitiesList);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        activityDescriptionTextArea.setEditable(false);
+        activityDescriptionTextArea.setColumns(20);
+        activityDescriptionTextArea.setRows(5);
+        jScrollPane2.setViewportView(activityDescriptionTextArea);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Valitun aktiviteetin kuvaus");
+        activityDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        activityDescriptionLabel.setText("Valitun aktiviteetin kuvaus");
 
-        jButton1.setText("Lisää uusi aktiviteetti");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addNewActivityButton.setText("Lisää uusi aktiviteetti");
+        addNewActivityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addNewActivityButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Poista valittu aktiviteetti");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        deleteSelectedActivityButton.setText("Poista valittu aktiviteetti");
+        deleteSelectedActivityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                deleteSelectedActivityButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Aktiviteetit");
+        activitiesLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        activitiesLabel.setText("Aktiviteetit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,13 +153,13 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(deleteSelectedActivityButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(addNewActivityButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(activityDescriptionLabel)
+                            .addComponent(activitiesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -167,41 +167,41 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(activitiesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(activityDescriptionLabel)
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(addNewActivityButton)
+                    .addComponent(deleteSelectedActivityButton))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addNewActivityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewActivityButtonActionPerformed
         openAddNewActivityMenu();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addNewActivityButtonActionPerformed
 
     private void dayActivitySelected(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_dayActivitySelected
-        if (jList1.getSelectedIndex() != -1) {
-            jTextArea1.setText(getDescriptionForSelectedItem());
+        if (activitiesList.getSelectedIndex() != -1) {
+            activityDescriptionTextArea.setText(getDescriptionForSelectedItem());
         } else {
-            jTextArea1.setText(" ");
+            activityDescriptionTextArea.setText(" ");
         }
     }//GEN-LAST:event_dayActivitySelected
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jList1.getSelectedIndex() != -1) {
+    private void deleteSelectedActivityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelectedActivityButtonActionPerformed
+        if (activitiesList.getSelectedIndex() != -1) {
             StatusCode code = controller.deleteDayEventFromDayPlan(plan.getName(), dayPlanName, getNameForSelectedItem());
             switch (code) {
                 case STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED:
-                    int index = jList1.getSelectedIndex();
+                    int index = activitiesList.getSelectedIndex();
                     listViewModel.removeElementAt(index);
                     break;
                 case STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND:
@@ -209,17 +209,17 @@ public class EditDayActivitiesGUI extends javax.swing.JDialog {
                     break;
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_deleteSelectedActivityButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList1;
+    private javax.swing.JLabel activitiesLabel;
+    private javax.swing.JList activitiesList;
+    private javax.swing.JLabel activityDescriptionLabel;
+    private javax.swing.JTextArea activityDescriptionTextArea;
+    private javax.swing.JButton addNewActivityButton;
+    private javax.swing.JButton deleteSelectedActivityButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

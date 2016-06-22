@@ -19,3 +19,6 @@ Matkasuunnitelman poistaminen onnistuu valitsemalla se alkuvalikon listasta ja p
 
 ##### HTML-tiedoston muodostaminen matkasuunnitelmasta
 Matkasuunnitelman ottaminen ulos HTML-muodossa onnistuu valitsemalla se alkuvalikon listasta ja painamalla "Luo tulostettava versio valitusta matkasuunnitelmasta"-nappia. Nyt vain valitaan tiedoston nimi ja paikka, johon se tallennetaan.
+
+##### Matkasuunnitelman arkistoiminen
+Matkasuunnitelman arkistoiminen onnistuu painamalla "Arkistoi suunnitelma"-nappia oikeassa yläreunassa. Arkistoimisen jälkeen suunnitelmaa ei voi enään muokata, mutta suunnitelman voi silti ottaa ulos tulostettavassamuodossa.

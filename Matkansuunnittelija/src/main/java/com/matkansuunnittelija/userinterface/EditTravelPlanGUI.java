@@ -16,7 +16,7 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
     private TravelPlan plan;
 
     private void initListView() {
-        listViewModel = (DefaultListModel) jList1.getModel();
+        listViewModel = (DefaultListModel) daysList.getModel();
         listViewModel.removeAllElements();
         for (DayPlan d : plan.getDayPlansAsList()) {
             listViewModel.addElement(d.getName());
@@ -43,7 +43,7 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
     }
     
     private String getSelectedDayName() {
-        int index = jList1.getSelectedIndex();
+        int index = daysList.getSelectedIndex();
         if (index == -1) {
             return null;
         }
@@ -70,19 +70,19 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
+        daysList = new javax.swing.JList();
+        editDayPlanButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Matkasuunnitelman muokkaus");
 
-        jList1.setModel(new DefaultListModel());
-        jScrollPane1.setViewportView(jList1);
+        daysList.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(daysList);
 
-        jButton1.setText("Muokkaa valitun päivän suunnitelmaa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editDayPlanButton.setText("Muokkaa valitun päivän suunnitelmaa");
+        editDayPlanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editDayPlanButtonActionPerformed(evt);
             }
         });
 
@@ -92,7 +92,7 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(179, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(editDayPlanButton)
                 .addContainerGap())
             .addComponent(jScrollPane1)
         );
@@ -101,21 +101,21 @@ public class EditTravelPlanGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(editDayPlanButton)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editDayPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDayPlanButtonActionPerformed
         openEditActivitiesWindow();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_editDayPlanButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JList jList1;
+    private javax.swing.JList daysList;
+    private javax.swing.JButton editDayPlanButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@ package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.controllers.TravelPlanController;
+import com.matkansuunnittelija.errormanager.ErrorManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,19 +35,19 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        travelPlanNameLabel = new javax.swing.JLabel();
+        travelPlanNameField = new javax.swing.JTextField();
+        travelPlanStartDateField = new javax.swing.JTextField();
         createNewTravelPlanButton = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        travelPlanEndDateField = new javax.swing.JTextField();
+        infoLabel = new javax.swing.JLabel();
+        travelPlanStartDateLabel = new javax.swing.JLabel();
+        travelPlanEndDateLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Uusi matkasuunnitelma");
 
-        jLabel1.setText("Matkasuunnitelman nimi:");
+        travelPlanNameLabel.setText("Matkasuunnitelman nimi:");
 
         createNewTravelPlanButton.setText("Luo uusi matkasuunnitelma");
         createNewTravelPlanButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,12 +56,12 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setForeground(new java.awt.Color(51, 51, 0));
-        jLabel4.setText("Päivämäärän tulee olla muotoa dd.mm.yyyy(esim. 10.11.2012)");
+        infoLabel.setForeground(new java.awt.Color(51, 51, 0));
+        infoLabel.setText("Päivämäärän tulee olla muotoa dd.mm.yyyy(esim. 10.11.2012)");
 
-        jLabel5.setText("Matkan alkamispäivämäärä:");
+        travelPlanStartDateLabel.setText("Matkan alkamispäivämäärä:");
 
-        jLabel6.setText("Matkan päättymispäivämäärä:");
+        travelPlanEndDateLabel.setText("Matkan päättymispäivämäärä:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,23 +71,23 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(infoLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(travelPlanNameLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(travelPlanNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(createNewTravelPlanButton, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
+                                    .addComponent(travelPlanStartDateLabel)
+                                    .addComponent(travelPlanEndDateLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                                    .addComponent(jTextField2))))))
+                                    .addComponent(travelPlanEndDateField, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                    .addComponent(travelPlanStartDateField))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -94,18 +95,18 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(travelPlanNameLabel)
+                    .addComponent(travelPlanNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(travelPlanStartDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(travelPlanStartDateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(travelPlanEndDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(travelPlanEndDateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(infoLabel)
                 .addGap(27, 27, 27)
                 .addComponent(createNewTravelPlanButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -116,29 +117,16 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
 
     private void createNewTravelPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTravelPlanButtonActionPerformed
 
-        StatusCode code = travelPlanController.createNewTravelPlan(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
+        StatusCode code = travelPlanController.createNewTravelPlan(travelPlanNameField.getText(), travelPlanStartDateField.getText(), travelPlanEndDateField.getText());
         switch (code) {
-            case STATUS_TRAVEL_PLAN_CREATE_FAIL_ALREADY_EXISTS:
-                JOptionPane.showMessageDialog(null, "Matkasuunnitelma samalla nimellä on jo olemassa!");
-                break;
-            case STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND:
-                JOptionPane.showMessageDialog(null, "Vakava virhe: Tietokanta tiedostoa ei löytynyt");
-                break;
-            case STATUS_TRAVEL_PLAN_CREATE_FAIL_DATE_DIFFERENCE_TOO_LONG:
-                JOptionPane.showMessageDialog(null, "Matkan pituus on liian suuri, maksimipituus on 14 päivää");
-                break;
-            case STATUS_TRAVEL_PLAN_CREATE_FAIL_START_DATE_AFTER_END_DATE:
-                JOptionPane.showMessageDialog(null, "Matkan päättymispäivä on ennen alkamispäivää tai sama päivä");
-                break;
             case STATUS_TRAVEL_PLAN_CREATE_SUCCEED:
-                // Avaa muokkausikkuna tässä
                 this.setVisible(false);
                 this.dispose();
-                this.parent.addTravelPlanToMenu(jTextField1.getText());
-                this.parent.openEditTravelPlanMenu(jTextField1.getText());
-                break;
-            case STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT:
-                JOptionPane.showMessageDialog(null, "Päivämäärä on väärää muotoa. Oikea muoto on dd.mm.yyyy. Esimerkiksi 12.11.2012");
+                this.parent.addTravelPlanToMenu(travelPlanNameField.getText());
+                this.parent.openEditTravelPlanMenu(travelPlanNameField.getText());
+                break;        
+            default:
+                JOptionPane.showMessageDialog(null, ErrorManager.getStringForErrorCode(code));
                 break;
         }
     }//GEN-LAST:event_createNewTravelPlanButtonActionPerformed
@@ -146,12 +134,12 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createNewTravelPlanButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JTextField travelPlanEndDateField;
+    private javax.swing.JLabel travelPlanEndDateLabel;
+    private javax.swing.JTextField travelPlanNameField;
+    private javax.swing.JLabel travelPlanNameLabel;
+    private javax.swing.JTextField travelPlanStartDateField;
+    private javax.swing.JLabel travelPlanStartDateLabel;
     // End of variables declaration//GEN-END:variables
 }

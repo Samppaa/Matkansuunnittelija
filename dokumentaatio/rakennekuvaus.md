@@ -11,7 +11,7 @@ Matkansuunnittelija-ohjelma koostuu neljästä pääalueesta:
 - Perusluokat TravelPlan.java, DayPlan.java ja DayEvent.java. Nämä muodostavat ohjelman perusyksiköt eli matkasuunnitelmat, matkasuunnitelmien päivät ja päivien sisällä olevat tapahtumat. FileManager pitää kirjaa matkasuunnitelmista.
 
 
-Yksinkertaisesti siis TravelPlanController ottaa vastaan käskyjä käyttöliittymältä ja käyttää FileManageria matkasuunnitelmien hallinnointiin kuten tallentamiseen.
+Yksinkertaisesti siis TravelPlanController ottaa vastaan käskyjä käyttöliittymältä ja käyttää FileManageria matkasuunnitelmien hallinnointiin kuten tallentamiseen. TravelPlanController myös varmistaa syötteiden oikeellisuuden, ja vasta kun syöte on oikea, niin se kutsuu FileManageria.
 
 Lukija voi ihmetellä miksi esim. TravelPlan-luokassa käytetään tavallista array tietotyyppiä tyyliin DayPlan[], vaikka voisi käyttää javan tarjoamaa ArrayList tietotyyppiä. Tämä on siksi, että GSON:in(jsonin käsittely luokka) on helppo serialisoida luokka json-muotoon, kun käytetään yksinkertaisia tietotyyppejä.
 

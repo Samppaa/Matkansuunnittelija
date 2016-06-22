@@ -104,9 +104,24 @@ public class DayPlanTest {
     }
     
     @Test
+    public void testHasDayEventWithTimeNoTime() {
+        assertEquals(false, dayPlan.hasEventWithTime(""));
+    }
+    
+    @Test
     public void testHasDayEventWithTimeSucceed() {
         addNewDayEvent();
         assertEquals(true, dayPlan.hasEventWithTime("13:00"));
+    }
+    
+    @Test
+    public void testGetEventsOrderedByTime() {
+        dayPlan.addNewDayEvent("Event 1", "13:00", "Description");
+        dayPlan.addNewDayEvent("Event 2", "10:00", "Description");
+        dayPlan.addNewDayEvent("Event 3", "15:00", "Description");
+        assertEquals("Event 2", dayPlan.getDayEventsOrderedByTime().get(0).getName());
+        assertEquals("Event 1", dayPlan.getDayEventsOrderedByTime().get(1).getName());
+        assertEquals("Event 3", dayPlan.getDayEventsOrderedByTime().get(2).getName());
     }
 
 }

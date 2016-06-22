@@ -15,7 +15,7 @@ public class HTMLTravelPlanGenerator {
         StringBuilder builder = new StringBuilder();
         builder.append(HTMLBuilder.generateHeader3(plan.getName())).append("\n");
         HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Aika", "Nimi", "Kuvaus");
-        for (DayEvent event : plan.getDayEvents()) {
+        for (DayEvent event : plan.getDayEventsOrderedByTime()) {
             tableBuilder.addRowToTable(event.getTime(), event.getName(), event.getDescription());
         }
         builder.append(tableBuilder.generateTable()).append("\n");

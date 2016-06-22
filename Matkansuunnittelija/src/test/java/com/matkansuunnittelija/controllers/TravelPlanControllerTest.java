@@ -148,4 +148,17 @@ public class TravelPlanControllerTest {
         assertEquals(wanted, controller.generateHTMLForTravelPlan("Test plan"));
     }
     
+    @Test
+    public void isTravelPlanArchievedYesTest() {
+        controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
+        controller.archiveTravelPlan("Test plan");
+        assertEquals(true, controller.isTravelPlanArchived("Test plan"));
+    }
+    
+    @Test
+    public void isTravelPlanArchievedNoTest() {
+        controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
+        assertEquals(false, controller.isTravelPlanArchived("Test plan"));
+    }
+    
 }

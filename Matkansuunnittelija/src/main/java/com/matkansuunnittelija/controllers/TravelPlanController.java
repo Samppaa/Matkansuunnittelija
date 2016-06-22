@@ -157,6 +157,32 @@ public class TravelPlanController {
     public void clearAllPlans() throws IOException {
         fileManager.clearAllPlans();
     }
+    
+    /**
+     * Tarkistaa onko kyseinen matkasuunnitelma arkistoitu.
+     *
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @return true tai false riippuen siitä onko matkasuunnitelma arkistoitu
+     */
+    public boolean isTravelPlanArchived(String travelPlanName) {
+        return fileManager.isTravelPlanArchived(travelPlanName);
+    }
+    
+    /**
+     * Arkistoi matkasuunnitelman.
+     *
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @return true tai false riippuen onnistuko operaatio
+     */
+    public boolean archiveTravelPlan(String travelPlanName) {
+        try {
+            fileManager.archiveTravelPlan(travelPlanName);
+        } catch (IOException ex) {
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * Palauttaa matkasuunnitelmien nimet listana.

@@ -1,17 +1,20 @@
 package com.matkansuunnittelija.travelplanobjects;
 
+import java.time.LocalTime;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Tapahtuma joita voi sisältyä päiviin mielivaltainen määrä.
  * Jokaisella tapahtumalla on nimi, kellonaika ja kuvaus.
  * @author Samuli
  */
-public class DayEvent {
+public class DayEvent implements Comparable<DayEvent> {
 
-    private String name;
-    private String time;
-    private String description;
+    private final String name;
+    private final String time;
+    private final String description;
 
     /**
      * Konstruktori joka luo DayEvent tyyppisen olion.
@@ -56,5 +59,23 @@ public class DayEvent {
 
     public String getDescription() {
         return description;
+    }
+    
+    private boolean validateTimeFormat(String time) {
+        String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        Pattern regExPattern = Pattern.compile(regExTime);
+        Matcher matcher = regExPattern.matcher(time);
+        return matcher.matches();
+    }
+
+    @Override
+    public int compareTo(DayEvent o) {
+        String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+        if (validateTimeFormat(o.getTime()) && validateTimeFormat(this.getTime())) {
+            LocalTime thisTime = LocalTime.parse(this.getTime());
+            LocalTime thatTime = LocalTime.parse(o.getTime());
+            return thisTime.compareTo(thatTime);
+        }
+        return -1;
     }
 }

@@ -2,6 +2,7 @@ package com.matkansuunnittelija.travelplanobjects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,6 +38,17 @@ public class DayPlan {
     public List<DayEvent> getDayEvents() {
         List<DayEvent> list = Arrays.asList(dayEvents);
         return Arrays.asList(dayEvents);
+    }
+    
+    /**
+     * Palauttaa päivän tapahtumat lista-muodossa aikajärjestyksessä.
+     *
+     * @return lista tapahtumista aikajärjestyksessä
+     */
+    public List<DayEvent> getDayEventsOrderedByTime() {
+        List<DayEvent> list = Arrays.asList(dayEvents);
+        Collections.sort(list);
+        return list;
     }
 
     private ArrayList<DayEvent> getDayEventsAsArrayList() {

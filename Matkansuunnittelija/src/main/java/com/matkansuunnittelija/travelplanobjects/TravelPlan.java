@@ -17,11 +17,12 @@ import java.util.Locale;
  */
 public class TravelPlan {
 
-    private String name;
+    private final String name;
     private DayPlan[] dayPlans;
-    private String startDate;
-    private String endDate;
+    private final String startDate;
+    private final String endDate;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.ENGLISH);
+    private boolean archived;
 
     private void initDayPlans(LocalDate startDate, LocalDate endDate) {
         long daysBetween = DAYS.between(startDate, endDate);
@@ -43,7 +44,19 @@ public class TravelPlan {
         this.startDate = convertDateToString(startDate);
         this.endDate = convertDateToString(endDate);
         this.dayPlans = new DayPlan[0];
+        this.archived = false;
         initDayPlans(startDate, endDate);
+    }
+    
+    /**
+     * Arkistoi suunnitelman eli muuntaa sen archived-arvon true:ksi.
+     */
+    public void archivePlan() {
+        this.archived = true;
+    }
+    
+    public boolean isArchived() {
+        return archived;
     }
     
     public String getStartDateAsString() {

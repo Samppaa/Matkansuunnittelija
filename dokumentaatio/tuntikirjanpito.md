@@ -17,4 +17,5 @@ Päivä | Tunnit | Kuvaus
 16.6.2015| 1.0h | Luokkakaavion tekoa
 20.6.2015| 1.0h | Koodin siistimistä
 21.6.2015| 4.0h | TravelPlanControllerin muuntaminen singletoniksi, rakennekuvaus
+22.6.2015| 2.0h | Koodin siistimistä
 

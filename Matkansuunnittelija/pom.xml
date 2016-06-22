@@ -56,12 +56,14 @@
                         <param>com.matkansuunnittelija.filemanagement.*</param>
                         <param>com.matkansuunnittelija.travelplanobjects.*</param>
                         <param>com.matkansuunnittelija.generators.*</param>
+                        <param>com.matkansuunnittelija.errormanager.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>com.matkansuunnittelija.controllers.*</param>
                         <param>com.matkansuunnittelija.filemanagement.*</param>
                         <param>com.matkansuunnittelija.travelplanobjects.*</param>
                         <param>com.matkansuunnittelija.generators.*</param>
+                        <param>com.matkansuunnittelija.errormanager.*</param>
                     </targetTests>
                 </configuration>
             </plugin>

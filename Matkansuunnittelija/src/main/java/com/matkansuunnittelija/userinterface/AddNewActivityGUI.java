@@ -2,6 +2,7 @@ package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.StatusCode;
 import com.matkansuunnittelija.controllers.TravelPlanController;
+import com.matkansuunnittelija.errormanager.ErrorManager;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import javax.swing.JOptionPane;
 
@@ -19,6 +20,10 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
 
     /**
      * Creates new form AddNewActivityGUI
+     * @param parent
+     * @param modal
+     * @param plan
+     * @param dayPlanName
      */
     public AddNewActivityGUI(EditDayActivitiesGUI parent, boolean modal, TravelPlan plan, String dayPlanName) {
         super(parent, modal);
@@ -30,18 +35,16 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
     }
 
     private void addNewActivity() {
-        StatusCode code = travelPlanController.addDayEventToDayPlan(plan.getName(), dayPlanName, jTextField1.getText(), jTextField2.getText(), jTextArea1.getText());
+        StatusCode code = travelPlanController.addDayEventToDayPlan(plan.getName(), dayPlanName, activityNameField.getText(), activityTimeField.getText(), activityDescriptionTextArea.getText());
         switch (code) {
-            case STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT:
-                JOptionPane.showMessageDialog(null, "Aika on väärässä muodossa. Oikea muoto: HH:mm(Esimerkiksi 02:20)");
-                break;
-            case STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS:
-                JOptionPane.showMessageDialog(null, "Samaan aikaan on jo aktiviteetti. Valitse eri aika.");
-                break;
             case STATUS_TRAVEL_PLAN_ADD_EVENT_SUCCEED:
                 this.setVisible(false);
                 this.dispose();
-                this.parent.addActivityToTheList(jTextField1.getText(), jTextField2.getText());
+                this.parent.addActivityToTheList(activityNameField.getText(), activityTimeField.getText());
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(null, ErrorManager.getStringForErrorCode(code));
                 break;
         }
     }
@@ -55,29 +58,29 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        activityNameLabel = new javax.swing.JLabel();
+        activityNameField = new javax.swing.JTextField();
+        activityTimeLabel = new javax.swing.JLabel();
+        activityTimeField = new javax.swing.JTextField();
+        activityDescriptionLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        activityDescriptionTextArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        infoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lisää uusi aktiviteetti");
 
-        jLabel1.setText("Aktiviteetin nimi:");
+        activityNameLabel.setText("Aktiviteetin nimi:");
 
-        jLabel2.setText("Aktiviteetin aika:");
+        activityTimeLabel.setText("Aktiviteetin aika:");
 
-        jLabel3.setText("Aktiviteetin kuvaus:");
+        activityDescriptionLabel.setText("Aktiviteetin kuvaus:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        activityDescriptionTextArea.setColumns(20);
+        activityDescriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(activityDescriptionTextArea);
 
         jButton1.setText("Lisää aktiviteetti");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +89,7 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("Huom: tulee olla muotoa HH:mm(esim 23:21)");
+        infoLabel.setText("Huom: tulee olla muotoa HH:mm(esim 23:21)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,20 +103,20 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(activityDescriptionLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(activityNameLabel)
+                            .addComponent(activityTimeLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(infoLabel)
                                 .addGap(0, 106, Short.MAX_VALUE))
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
+                            .addComponent(activityTimeField)
+                            .addComponent(activityNameField))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,16 +124,16 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(activityNameLabel)
+                    .addComponent(activityNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(activityTimeLabel)
+                    .addComponent(activityTimeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
-                .addComponent(jLabel4)
+                .addComponent(infoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(activityDescriptionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -152,15 +155,15 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel activityDescriptionLabel;
+    private javax.swing.JTextArea activityDescriptionTextArea;
+    private javax.swing.JTextField activityNameField;
+    private javax.swing.JLabel activityNameLabel;
+    private javax.swing.JTextField activityTimeField;
+    private javax.swing.JLabel activityTimeLabel;
+    private javax.swing.JLabel infoLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,18 +33,6 @@ public class FileManager {
         if (travelPlans == null) {
             travelPlans = new ArrayList<>();
         }
-        createFileIfNotExist();
-    }
-    
-    private void createFileIfNotExist() {
-        File f = new File("plans.json");
-        if (!f.exists()) {
-            try {
-                f.createNewFile();
-            } catch (IOException ex) {
-                
-            }
-        }
     }
 
     /**
@@ -112,6 +100,28 @@ public class FileManager {
     public void addDayPlanToTravelPlan(String travelPlanName) throws IOException {
         TravelPlan plan = getTravelPlan(travelPlanName);
         plan.addNewDayPlan(travelPlanName);
+        saveDataFile();
+    }
+    
+    /**
+     * Tarkistaa onko kyseinen matkasuunnitelma arkistoitu.
+     *
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @return true tai false riippuen siitä onko matkasuunnitelma arkistoitu
+     */
+    public boolean isTravelPlanArchived(String travelPlanName) {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        return plan.isArchived();
+    }
+    
+    /**
+     * Arkistoi matkasuunnitelman.
+     * @param travelPlanName Matkasuunnitelman nimi
+     * @throws java.io.IOException Antaa IOException mikäli tiedoston käsittelyssä tapahtuu virhe
+     */
+    public void archiveTravelPlan(String travelPlanName) throws IOException {
+        TravelPlan plan = getTravelPlan(travelPlanName);
+        plan.archivePlan();
         saveDataFile();
     }
     

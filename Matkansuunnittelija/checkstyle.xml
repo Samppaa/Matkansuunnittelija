@@ -91,7 +91,7 @@
     </module>
 
     <module name='FileLength'>
-        <property name='max' value='240' />
+        <property name='max' value='260' />
     </module>
 
 

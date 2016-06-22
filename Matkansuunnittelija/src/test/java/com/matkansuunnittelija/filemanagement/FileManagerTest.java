@@ -129,5 +129,18 @@ public class FileManagerTest {
         manager.deleteDayEventFromDayPlan("Singapore", "Päivä 1", "Event 1");
         assertEquals(manager.getTravelPlan("Singapore").getDayPlan("Päivä 1").getDayEvents().size(), 0);
     }
+    
+    @Test
+    public void isTravelPlanArchievedYesTest() throws IOException, ParseException {
+        addTravelPlan();
+        manager.archiveTravelPlan("Singapore");
+        assertEquals(true, manager.isTravelPlanArchived("Singapore"));
+    }
+    
+    @Test
+    public void isTravelPlanArchievedNoTest() throws IOException, ParseException {
+        addTravelPlan();
+        assertEquals(false, manager.isTravelPlanArchived("Singapore"));
+    }
 
 }

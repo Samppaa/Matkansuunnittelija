@@ -72,5 +72,11 @@ public class TravelPlanTest {
     public void testGetDayPlanNotExist() {
         assertEquals(null, travelPlan.getDayPlan("non-existing dayplan"));
     }
+    
+    @Test
+    public void archivePlanTest() {
+        travelPlan.archivePlan();
+        assertEquals(true, travelPlan.isArchived());
+    }
 
 }
