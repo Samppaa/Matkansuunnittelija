@@ -1,6 +1,6 @@
 # Testausdokumentaatio
 
-Yleisesti kaikki mikä oli järkevää testate yksikkötesteillä on testattu.
+Yleisesti kaikki mikä oli järkevää testata yksikkötesteillä on testattu.
 
 ##### ErrorManager.java
 Kun PIT-raporttia katsoo, niin voi havaita, että *ErrorManager.java:n* mutaatioista on tapettu vain muutama. Tämä johtuu siitä, että `initErrorCodes()` suoritetaan vain kerran, kun olio luodaan. Luokka on toteutettu singletontyylillä eli niitä on vain yksi, ja se luodaan automaattisesti, kun käyttäjä kutsuu `getStringForErrorCode(StatusCode code)`-funktiota. Näiden mutanttien tappaminen ei ole hirveän suoraviivaista ilman muuttamatta luokan rakennetta, joten kaikkien virheviestien toiminta on testattu käsin ohjelman toiminnan yhteydessä, ja todettu toimivaksi.
