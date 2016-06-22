@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi_FI" lang="fi_FI">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>EditDayActivitiesGUI xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -36,7 +36,7 @@
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>      }
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> initListViewWithActivities() {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>          listViewModel = (DefaultListModel) jList1.getModel();
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          listViewModel = (DefaultListModel) activitiesList.getModel();
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>          listViewModel.removeAllElements();
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">for</strong> (DayEvent e : plan.getDayPlan(dayPlanName).getDayEvents()) {
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      }
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/matkansuunnittelija/travelplanobjects/DayEvent.html">DayEvent</a> getSelectedEvent() {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">int</strong> index = jList1.getSelectedIndex();
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">int</strong> index = activitiesList.getSelectedIndex();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>          <a href="../../../com/matkansuunnittelija/travelplanobjects/DayEvent.html">DayEvent</a> event = controller.getTravelPlan(plan.getName()).getDayPlan(dayPlanName).getDayEventWithName(getNameFromFormattedStringForDayEvent((String) listViewModel.getElementAt(index)));
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          <strong class="jxr_keyword">return</strong> event;
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      }
@@ -108,48 +108,48 @@
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> initComponents() {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>         jScrollPane1 = <strong class="jxr_keyword">new</strong> javax.swing.JScrollPane();
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         jList1 = <strong class="jxr_keyword">new</strong> javax.swing.JList();
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         activitiesList = <strong class="jxr_keyword">new</strong> javax.swing.JList();
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         jScrollPane2 = <strong class="jxr_keyword">new</strong> javax.swing.JScrollPane();
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>         jTextArea1 = <strong class="jxr_keyword">new</strong> javax.swing.JTextArea();
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>         jLabel1 = <strong class="jxr_keyword">new</strong> javax.swing.JLabel();
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>         jButton1 = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>         jButton2 = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         jLabel2 = <strong class="jxr_keyword">new</strong> javax.swing.JLabel();
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>         activityDescriptionTextArea = <strong class="jxr_keyword">new</strong> javax.swing.JTextArea();
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         activityDescriptionLabel = <strong class="jxr_keyword">new</strong> javax.swing.JLabel();
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>         addNewActivityButton = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>         deleteSelectedActivityButton = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>         activitiesLabel = <strong class="jxr_keyword">new</strong> javax.swing.JLabel();
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>         jList1.setModel(<strong class="jxr_keyword">new</strong> DefaultListModel());
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         jList1.addListSelectionListener(<strong class="jxr_keyword">new</strong> javax.swing.event.ListSelectionListener() {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>         activitiesList.setModel(<strong class="jxr_keyword">new</strong> DefaultListModel());
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         activitiesList.addListSelectionListener(<strong class="jxr_keyword">new</strong> javax.swing.event.ListSelectionListener() {
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> valueChanged(javax.swing.event.ListSelectionEvent evt) {
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>                 dayActivitySelected(evt);
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>             }
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>         });
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>         jScrollPane1.setViewportView(jList1);
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         jScrollPane1.setViewportView(activitiesList);
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> 
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>         jTextArea1.setEditable(false);
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         jTextArea1.setColumns(20);
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>         jTextArea1.setRows(5);
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>         jScrollPane2.setViewportView(jTextArea1);
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         activityDescriptionTextArea.setEditable(false);
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>         activityDescriptionTextArea.setColumns(20);
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>         activityDescriptionTextArea.setRows(5);
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         jScrollPane2.setViewportView(activityDescriptionTextArea);
 <a class="jxr_linenumber" name="L125" href="#L125">125</a> 
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>         jLabel1.setFont(<strong class="jxr_keyword">new</strong> java.awt.Font(<span class="jxr_string">"Tahoma"</span>, 0, 14)); <em class="jxr_comment">// NOI18N</em>
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         jLabel1.setText(<span class="jxr_string">"Valitun aktiviteetin kuvaus"</span>);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         activityDescriptionLabel.setFont(<strong class="jxr_keyword">new</strong> java.awt.Font(<span class="jxr_string">"Tahoma"</span>, 0, 14)); <em class="jxr_comment">// NOI18N</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>         activityDescriptionLabel.setText(<span class="jxr_string">"Valitun aktiviteetin kuvaus"</span>);
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> 
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>         jButton1.setText(<span class="jxr_string">"Lisää uusi aktiviteetti"</span>);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>         jButton1.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         addNewActivityButton.setText(<span class="jxr_string">"Lisää uusi aktiviteetti"</span>);
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         addNewActivityButton.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(java.awt.event.ActionEvent evt) {
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>                 jButton1ActionPerformed(evt);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>                 addNewActivityButtonActionPerformed(evt);
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>             }
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>         });
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>         jButton2.setText(<span class="jxr_string">"Poista valittu aktiviteetti"</span>);
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>         jButton2.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         deleteSelectedActivityButton.setText(<span class="jxr_string">"Poista valittu aktiviteetti"</span>);
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>         deleteSelectedActivityButton.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>             <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(java.awt.event.ActionEvent evt) {
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>                 jButton2ActionPerformed(evt);
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>                 deleteSelectedActivityButtonActionPerformed(evt);
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>             }
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>         });
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>         jLabel2.setFont(<strong class="jxr_keyword">new</strong> java.awt.Font(<span class="jxr_string">"Tahoma"</span>, 0, 18)); <em class="jxr_comment">// NOI18N</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>         jLabel2.setText(<span class="jxr_string">"Aktiviteetit"</span>);
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>         activitiesLabel.setFont(<strong class="jxr_keyword">new</strong> java.awt.Font(<span class="jxr_string">"Tahoma"</span>, 0, 18)); <em class="jxr_comment">// NOI18N</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         activitiesLabel.setText(<span class="jxr_string">"Aktiviteetit"</span>);
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>         javax.swing.GroupLayout layout = <strong class="jxr_keyword">new</strong> javax.swing.GroupLayout(getContentPane());
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>         getContentPane().setLayout(layout);
@@ -161,13 +161,13 @@
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>                 .addContainerGap()
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>                         .addComponent(jButton2)
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>                         .addComponent(deleteSelectedActivityButton)
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>                         .addComponent(jButton1))
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>                         .addComponent(addNewActivityButton))
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>                     .addGroup(layout.createSequentialGroup()
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>                             .addComponent(jLabel1)
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>                             .addComponent(activityDescriptionLabel)
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>                             .addComponent(activitiesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>                         .addGap(0, 0, Short.MAX_VALUE)))
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>                 .addContainerGap())
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>         );
@@ -175,41 +175,41 @@
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <a class="jxr_linenumber" name="L168" href="#L168">168</a>             .addGroup(layout.createSequentialGroup()
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>                 .addGap(4, 4, 4)
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>                 .addComponent(activitiesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
 <a class="jxr_linenumber" name="L173" href="#L173">173</a>                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>                 .addComponent(jLabel1)
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>                 .addComponent(activityDescriptionLabel)
 <a class="jxr_linenumber" name="L175" href="#L175">175</a>                 .addGap(5, 5, 5)
 <a class="jxr_linenumber" name="L176" href="#L176">176</a>                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>                     .addComponent(jButton1)
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>                     .addComponent(jButton2))
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>                     .addComponent(addNewActivityButton)
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>                     .addComponent(deleteSelectedActivityButton))
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>                 .addContainerGap())
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>         );
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 
 <a class="jxr_linenumber" name="L184" href="#L184">184</a>         pack();
 <a class="jxr_linenumber" name="L185" href="#L185">185</a>     }<em class="jxr_comment">// &lt;/editor-fold&gt;//GEN-END:initComponents</em>
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> jButton1ActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_jButton1ActionPerformed</em>
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addNewActivityButtonActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_addNewActivityButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L188" href="#L188">188</a>         openAddNewActivityMenu();
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>     }<em class="jxr_comment">//GEN-LAST:event_jButton1ActionPerformed</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>     }<em class="jxr_comment">//GEN-LAST:event_addNewActivityButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L190" href="#L190">190</a> 
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> dayActivitySelected(javax.swing.event.ListSelectionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_dayActivitySelected</em>
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>         <strong class="jxr_keyword">if</strong> (jList1.getSelectedIndex() != -1) {
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>             jTextArea1.setText(getDescriptionForSelectedItem());
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>         <strong class="jxr_keyword">if</strong> (activitiesList.getSelectedIndex() != -1) {
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>             activityDescriptionTextArea.setText(getDescriptionForSelectedItem());
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>             jTextArea1.setText(<span class="jxr_string">" "</span>);
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>             activityDescriptionTextArea.setText(<span class="jxr_string">" "</span>);
 <a class="jxr_linenumber" name="L196" href="#L196">196</a>         }
 <a class="jxr_linenumber" name="L197" href="#L197">197</a>     }<em class="jxr_comment">//GEN-LAST:event_dayActivitySelected</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> jButton2ActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_jButton2ActionPerformed</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>         <strong class="jxr_keyword">if</strong> (jList1.getSelectedIndex() != -1) {
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> deleteSelectedActivityButtonActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_deleteSelectedActivityButtonActionPerformed</em>
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>         <strong class="jxr_keyword">if</strong> (activitiesList.getSelectedIndex() != -1) {
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>             <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> code = controller.deleteDayEventFromDayPlan(plan.getName(), dayPlanName, getNameForSelectedItem());
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>             <strong class="jxr_keyword">switch</strong> (code) {
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>                 <strong class="jxr_keyword">case</strong> STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED:
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>                     <strong class="jxr_keyword">int</strong> index = jList1.getSelectedIndex();
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>                     <strong class="jxr_keyword">int</strong> index = activitiesList.getSelectedIndex();
 <a class="jxr_linenumber" name="L205" href="#L205">205</a>                     listViewModel.removeElementAt(index);
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>                     <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L207" href="#L207">207</a>                 <strong class="jxr_keyword">case</strong> STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND:
@@ -217,18 +217,18 @@
 <a class="jxr_linenumber" name="L209" href="#L209">209</a>                     <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L210" href="#L210">210</a>             }
 <a class="jxr_linenumber" name="L211" href="#L211">211</a>         }
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>     }<em class="jxr_comment">//GEN-LAST:event_jButton2ActionPerformed</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>     }<em class="jxr_comment">//GEN-LAST:event_deleteSelectedActivityButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> 
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 
 <a class="jxr_linenumber" name="L215" href="#L215">215</a>     <em class="jxr_comment">// Variables declaration - do not modify//GEN-BEGIN:variables</em>
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton jButton1;
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton jButton2;
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>     <strong class="jxr_keyword">private</strong> javax.swing.JLabel jLabel1;
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>     <strong class="jxr_keyword">private</strong> javax.swing.JLabel jLabel2;
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>     <strong class="jxr_keyword">private</strong> javax.swing.JList jList1;
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">private</strong> javax.swing.JScrollPane jScrollPane1;
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>     <strong class="jxr_keyword">private</strong> javax.swing.JScrollPane jScrollPane2;
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>     <strong class="jxr_keyword">private</strong> javax.swing.JTextArea jTextArea1;
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>     <strong class="jxr_keyword">private</strong> javax.swing.JLabel activitiesLabel;
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>     <strong class="jxr_keyword">private</strong> javax.swing.JList activitiesList;
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>     <strong class="jxr_keyword">private</strong> javax.swing.JLabel activityDescriptionLabel;
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>     <strong class="jxr_keyword">private</strong> javax.swing.JTextArea activityDescriptionTextArea;
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton addNewActivityButton;
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton deleteSelectedActivityButton;
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>     <strong class="jxr_keyword">private</strong> javax.swing.JScrollPane jScrollPane1;
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>     <strong class="jxr_keyword">private</strong> javax.swing.JScrollPane jScrollPane2;
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>     <em class="jxr_comment">// End of variables declaration//GEN-END:variables</em>
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> }
 </pre>

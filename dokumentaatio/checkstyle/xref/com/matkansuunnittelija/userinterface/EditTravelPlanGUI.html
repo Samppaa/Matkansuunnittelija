@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi_FI" lang="fi_FI">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US" lang="en_US">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>EditTravelPlanGUI xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -24,7 +24,7 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/matkansuunnittelija/travelplanobjects/TravelPlan.html">TravelPlan</a> plan;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> initListView() {
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>          listViewModel = (DefaultListModel) jList1.getModel();
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>          listViewModel = (DefaultListModel) daysList.getModel();
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>          listViewModel.removeAllElements();
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>          <strong class="jxr_keyword">for</strong> (DayPlan d : plan.getDayPlansAsList()) {
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>              listViewModel.addElement(d.getName());
@@ -51,7 +51,7 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      }
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">private</strong> String getSelectedDayName() {
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">int</strong> index = jList1.getSelectedIndex();
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">int</strong> index = daysList.getSelectedIndex();
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>          <strong class="jxr_keyword">if</strong> (index == -1) {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>              <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          }
@@ -78,19 +78,19 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> initComponents() {
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          jScrollPane1 = <strong class="jxr_keyword">new</strong> javax.swing.JScrollPane();
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          jList1 = <strong class="jxr_keyword">new</strong> javax.swing.JList();
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          jButton1 = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          daysList = <strong class="jxr_keyword">new</strong> javax.swing.JList();
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          editDayPlanButton = <strong class="jxr_keyword">new</strong> javax.swing.JButton();
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>          setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          setTitle(<span class="jxr_string">"Matkasuunnitelman muokkaus"</span>);
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          jList1.setModel(<strong class="jxr_keyword">new</strong> DefaultListModel());
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          jScrollPane1.setViewportView(jList1);
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          daysList.setModel(<strong class="jxr_keyword">new</strong> DefaultListModel());
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          jScrollPane1.setViewportView(daysList);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>          jButton1.setText(<span class="jxr_string">"Muokkaa valitun päivän suunnitelmaa"</span>);
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>          jButton1.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>          editDayPlanButton.setText(<span class="jxr_string">"Muokkaa valitun päivän suunnitelmaa"</span>);
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>          editDayPlanButton.addActionListener(<strong class="jxr_keyword">new</strong> java.awt.event.ActionListener() {
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>              <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(java.awt.event.ActionEvent evt) {
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  jButton1ActionPerformed(evt);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  editDayPlanButtonActionPerformed(evt);
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              }
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          });
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  
@@ -100,7 +100,7 @@
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>              layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>                  .addContainerGap(179, Short.MAX_VALUE)
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  .addComponent(jButton1)
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  .addComponent(editDayPlanButton)
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>                  .addContainerGap())
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>              .addComponent(jScrollPane1)
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>          );
@@ -109,21 +109,21 @@
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>             .addGroup(layout.createSequentialGroup()
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>                 .addGap(18, 18, 18)
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 .addComponent(jButton1)
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 .addComponent(editDayPlanButton)
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>                 .addContainerGap(14, Short.MAX_VALUE))
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>         );
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>         pack();
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>     }<em class="jxr_comment">// &lt;/editor-fold&gt;//GEN-END:initComponents</em>
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> jButton1ActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_jButton1ActionPerformed</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> editDayPlanButtonActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_editDayPlanButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>         openEditActivitiesWindow();
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     }<em class="jxr_comment">//GEN-LAST:event_jButton1ActionPerformed</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     }<em class="jxr_comment">//GEN-LAST:event_editDayPlanButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> 
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>     <em class="jxr_comment">// Variables declaration - do not modify//GEN-BEGIN:variables</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton jButton1;
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>     <strong class="jxr_keyword">private</strong> javax.swing.JList jList1;
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>     <strong class="jxr_keyword">private</strong> javax.swing.JList daysList;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>     <strong class="jxr_keyword">private</strong> javax.swing.JButton editDayPlanButton;
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>     <strong class="jxr_keyword">private</strong> javax.swing.JScrollPane jScrollPane1;
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>     <em class="jxr_comment">// End of variables declaration//GEN-END:variables</em>
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> }
