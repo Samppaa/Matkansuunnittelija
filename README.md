@@ -9,6 +9,8 @@ Matkansuunnittelija on sovellus, jolla käyttäjä voi suunnitella esimerkiksi t
 
 ### [Käyttöohjeet](dokumentaatio/kayttoohjeet.md)
 
+### [Testausdokumentaatio](dokumentaatio/testausdokumentaatio.md)
+
 ### [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 ### [Checkstyle](https://htmlpreview.github.io/?https://github.com/Samppaa/Matkansuunnittelija/blob/master/dokumentaatio/checkstyle/checkstyle.html)

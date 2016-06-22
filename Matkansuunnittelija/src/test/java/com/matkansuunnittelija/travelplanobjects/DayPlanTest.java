@@ -115,6 +115,25 @@ public class DayPlanTest {
     }
     
     @Test
+    public void testHasDayEventWithTimeOtherFormat() {
+        dayPlan.addNewDayEvent("Event 1", "3:00", "Description");
+        assertEquals(true, dayPlan.hasEventWithTime("3:00"));
+        assertEquals(true, dayPlan.hasEventWithTime("03:00"));
+    }
+    
+    @Test
+    public void testHasDayEventWithTimeOtherFormat2() {
+        dayPlan.addNewDayEvent("Event 1", "03:00", "Description");
+        assertEquals(true, dayPlan.hasEventWithTime("3:00"));
+        assertEquals(true, dayPlan.hasEventWithTime("03:00"));
+    }
+    
+    @Test
+    public void testHasDayEventWithTimeNoEvents() {
+        assertEquals(false, dayPlan.hasEventWithTime("3:00"));
+    }
+    
+    @Test
     public void testGetEventsOrderedByTime() {
         dayPlan.addNewDayEvent("Event 1", "13:00", "Description");
         dayPlan.addNewDayEvent("Event 2", "10:00", "Description");
