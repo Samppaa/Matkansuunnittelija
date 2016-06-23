@@ -18,5 +18,5 @@ Päivä | Tunnit | Kuvaus
 20.6.2015| 1.0h | Koodin siistimistä
 21.6.2015| 4.0h | TravelPlanControllerin muuntaminen singletoniksi, rakennekuvaus
 22.6.2015| 2.0h | Koodin siistimistä
-23.6.2015| 8.0h | Koodin viimeistely, testejä, pit, checkstyle, kaavioiden päivitys jne.
+23.6.2015| 10.0h | Koodin viimeistely, testejä, pit, checkstyle, kaavioiden päivitys jne.
 
