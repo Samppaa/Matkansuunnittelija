@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Luokka joka vastaa matkasuunnitelmien kirjoittamisesta tiedostoon ja niiden lukemisesta tiedostosta.
@@ -88,13 +89,27 @@ public class FileManager {
         File f = new File("plans.json");
         Files.write(jsonParser.toJson(travelPlans), f, Charsets.UTF_8);
     }
+    
+    private boolean isJSONValid(String jsonInString) {
+        try {
+            jsonParser.fromJson(jsonInString, Object.class);
+            return true;
+        } catch (com.google.gson.JsonSyntaxException ex) {
+            return false;
+        }
+    }
 
     private List<TravelPlan> getTravelPlansFromFile() {
         try (Reader reader = new InputStreamReader(new FileInputStream("plans.json"), "UTF-8")) {
+            String fileContent = new Scanner(new File("plans.json")).useDelimiter("\\Z").next();
+            if (!isJSONValid(fileContent)) {
+                return null;
+            }
             List<TravelPlan> travelPlans2 = jsonParser.fromJson(reader, new TypeToken<List<TravelPlan>>() {
                 }.getType());
             return travelPlans2;
-        } catch (IOException ex) {
+        } catch (IllegalStateException | IOException ex) {
+            int i = 0;
             return null;
         }
     }
