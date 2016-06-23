@@ -90,6 +90,23 @@ public class TravelPlanController {
 
         return StatusCode.STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED;
     }
+    
+    /**
+     * Luo HTML-tiedoston matkasuunnitelmasta.
+     *
+     * @param plan Matkasuunnitelma
+     * @param fileName Tiedoston nimi johon kirjoitetaan
+     * @return true tai false riippuen onnistuuko operaatio
+     */
+    public boolean createHTMLFileFromTravelPlan(TravelPlan plan, String fileName) {
+        try {
+            fileManager.createHTMLFile(this.generateHTMLForTravelPlan(plan.getName()), fileName);
+        } catch (IOException ex) {
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * Lisää tapahtuman tiedoilla valitun matkasuunnitelman tiettyyn päivään.

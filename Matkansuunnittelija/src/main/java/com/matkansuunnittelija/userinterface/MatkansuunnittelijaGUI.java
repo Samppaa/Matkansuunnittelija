@@ -1,6 +1,7 @@
 package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.controllers.TravelPlanController;
+import com.matkansuunnittelija.errormanager.ErrorManager;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -86,20 +88,6 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
                     }
                 }
             });
-    }
-    
-    private void createHTMLFileFromPlan(TravelPlan plan, File file) {
-        String fileName = file.toString();
-        if (!fileName.endsWith(".html")) {
-            fileName += ".html";
-        }
-        
-        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"));) {
-            out.write(travelPlanController.generateHTMLForTravelPlan(plan.getName()));
-            out.close();
-        } catch (IOException ex) {
-            // Dialog box here
-        }
     }
     
     private void setPlanArchivedState() {
@@ -266,7 +254,9 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
             setFileFilter(c);
             int rVal = c.showSaveDialog(this);
             if (rVal == JFileChooser.APPROVE_OPTION) {
-                createHTMLFileFromPlan(plan, c.getSelectedFile());
+                if(!travelPlanController.createHTMLFileFromTravelPlan(plan, c.getSelectedFile().toString())) {
+                    JOptionPane.showMessageDialog(null, "Virhe tiedoston tallentamisessa");
+                }
             }
         }
     }//GEN-LAST:event_createPrintableTravelPlanButtonActionPerformed

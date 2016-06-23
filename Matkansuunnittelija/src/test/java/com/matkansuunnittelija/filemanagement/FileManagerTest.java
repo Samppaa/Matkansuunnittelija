@@ -1,6 +1,7 @@
 package com.matkansuunnittelija.filemanagement;
 
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -40,6 +41,8 @@ public class FileManagerTest {
         manager.clearAllPlans();
         manager.createNewTravelPlan("Norway", LocalDate.of(2013, 1, 1), LocalDate.of(2013, 1, 9));
         manager.createNewTravelPlan("Hong Kong", LocalDate.of(2013, 1, 1), LocalDate.of(2013, 1, 9));
+        File f = new File("test.html");
+        f.delete();
     }
 
     private void addTravelPlan() throws IOException, ParseException {
@@ -78,7 +81,7 @@ public class FileManagerTest {
     }
     
     @Test
-    public void addDayPlanToTravelPlanTestIndexAndName() throws IOException
+    public void testAddDayPlanToTravelPlanTestIndexAndName() throws IOException
     {
         assertEquals(9, manager.getTravelPlan("Norway").getDayPlansAsList().size());
         manager.addDayPlanToTravelPlan(0, "Test1");
@@ -86,7 +89,7 @@ public class FileManagerTest {
     }
     
     @Test
-    public void addDayPlanToTravelPlanTestName() throws IOException
+    public void testAddDayPlanToTravelPlanTestName() throws IOException
     {
         assertEquals(9, manager.getTravelPlan("Norway").getDayPlansAsList().size());
         manager.addDayPlanToTravelPlan("Norway");
@@ -94,7 +97,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void addTravelPlanTest() throws IOException, ParseException {
+    public void testAddTravelPlan() throws IOException, ParseException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
         assertEquals(3, plans.size());
@@ -102,7 +105,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void deleteAddedTravelPlanTest() throws IOException, ParseException {
+    public void testDeleteAddedTravelPlan() throws IOException, ParseException {
         addTravelPlan();
         List<TravelPlan> plans = manager.getTravelPlans();
         assertEquals("Singapore", plans.get(2).getName());
@@ -112,17 +115,17 @@ public class FileManagerTest {
     }
 
     @Test
-    public void getTravelPlanTestExist() {
+    public void testGetTravelPlanTestExist() {
         assertThat(manager.getTravelPlan("Norway"), not(IsNull.nullValue()));
     }
 
     @Test
-    public void getTravelPlanTestNotExist() {
+    public void testGetTravelPlanTestNotExist() {
         assertThat(manager.getTravelPlan("USA"), is(IsNull.nullValue()));
     }
     
     @Test
-    public void deleteDayEventFromDayPlanSucceed() throws IOException, ParseException {
+    public void testDeleteDayEventFromDayPlanSucceed() throws IOException, ParseException {
         addTravelPlan();
         manager.addDayEventToDayPlan("Singapore", "Päivä 1", "Event 1", "21:00", "abc");
         assertEquals(manager.getTravelPlan("Singapore").getDayPlan("Päivä 1").getDayEvents().size(), 1);
@@ -131,16 +134,17 @@ public class FileManagerTest {
     }
     
     @Test
-    public void isTravelPlanArchievedYesTest() throws IOException, ParseException {
+    public void testIsTravelPlanArchievedYes() throws IOException, ParseException {
         addTravelPlan();
         manager.archiveTravelPlan("Singapore");
         assertEquals(true, manager.isTravelPlanArchived("Singapore"));
     }
     
     @Test
-    public void isTravelPlanArchievedNoTest() throws IOException, ParseException {
+    public void testIsTravelPlanArchievedNoTest() throws IOException, ParseException {
         addTravelPlan();
         assertEquals(false, manager.isTravelPlanArchived("Singapore"));
     }
+
 
 }

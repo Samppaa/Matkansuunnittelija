@@ -4,13 +4,20 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.matkansuunnittelija.controllers.TravelPlanController;
 import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -47,6 +54,25 @@ public class FileManager {
             }
         }
         return null;
+    }
+    
+    /**
+     * Luo HTML-tiedoston.
+     *
+     * @param htmlCode HTML-koodi, joka kirjoitetaan tiedostoon
+     * @param fileName Tiedoston nimi johon kirjoitetaan
+     * @throws UnsupportedEncodingException Encoding exception virhe
+     * @throws FileNotFoundException Tiedostoa ei löydy exception
+     * @throws IOException Tiedostonkäsittelyvirhe
+     */
+    public void createHTMLFile(String htmlCode, String fileName) throws UnsupportedEncodingException, FileNotFoundException, IOException {
+        if (!fileName.endsWith(".html")) {
+            fileName += ".html";
+        }
+
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"))) {
+            out.write(htmlCode);
+        }
     }
 
     /**

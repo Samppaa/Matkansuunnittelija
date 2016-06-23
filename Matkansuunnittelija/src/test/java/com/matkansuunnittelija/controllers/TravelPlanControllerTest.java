@@ -1,7 +1,9 @@
 package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.StatusCode;
+import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,6 +34,8 @@ public class TravelPlanControllerTest {
     public void setUp() throws IOException {
         controller = TravelPlanController.getInstance();
         controller.clearAllPlans();
+        File f = new File("test.html");
+        f.delete();
     }
     
     @After
@@ -156,6 +160,24 @@ public class TravelPlanControllerTest {
     public void isTravelPlanArchievedNoTest() {
         controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
         assertEquals(false, controller.isTravelPlanArchived("Test plan"));
+    }
+    
+    @Test
+    public void testGenerateHTMLFileFromTravelPlan() throws IOException, ParseException {
+        controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
+        File f = new File("test.html");
+        controller.createHTMLFileFromTravelPlan(controller.getTravelPlan("Test plan"), "test.html");
+        assertEquals(true, f.exists());
+        assertTrue("File size should be greater than 0", f.length() > 0);
+    }
+    
+    @Test
+    public void testGenerateHTMLFileFromTravelPlanNotEndWithHTML() throws IOException, ParseException {
+        controller.createNewTravelPlan("Test plan", "01.01.2012", "02.01.2012");
+        File f = new File("test.html");
+        controller.createHTMLFileFromTravelPlan(controller.getTravelPlan("Test plan"), "test");
+        assertEquals(true, f.exists());
+        assertTrue("File size should be greater than 0", f.length() > 0);
     }
     
 }
