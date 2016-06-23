@@ -18,13 +18,7 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
     private final TravelPlanController travelPlanController;
     private final EditDayActivitiesGUI parent;
 
-    /**
-     * Creates new form AddNewActivityGUI
-     * @param parent
-     * @param modal
-     * @param plan
-     * @param dayPlanName
-     */
+
     public AddNewActivityGUI(EditDayActivitiesGUI parent, boolean modal, TravelPlan plan, String dayPlanName) {
         super(parent, modal);
         initComponents();
@@ -150,9 +144,7 @@ public class AddNewActivityGUI extends javax.swing.JDialog {
         addNewActivity();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityDescriptionLabel;

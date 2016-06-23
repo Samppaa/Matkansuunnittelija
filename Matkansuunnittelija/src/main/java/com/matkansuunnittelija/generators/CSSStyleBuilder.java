@@ -42,7 +42,7 @@ public class CSSStyleBuilder {
     }
 
     /**
-     * Generoi CSS-tyylin <style>..</style> tagien sisään.
+     * Generoi CSS-tyylin style-tagien sisään.
      * @return CSS-tyyli
      */
     public String generateCSS() {

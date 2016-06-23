@@ -5,7 +5,7 @@ import com.matkansuunnittelija.travelplanobjects.DayPlan;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 
 /**
- * Luokka joka vastaa HTML-sivun generaroinnista matkasuunnitelman pohjalta.
+ * Luokka joka vastaa HTML-sivun generoinnista matkasuunnitelman pohjalta.
  *
  * @author Samuli
  */
