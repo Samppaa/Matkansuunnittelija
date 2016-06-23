@@ -70,7 +70,6 @@ public class DayEvent implements Comparable<DayEvent> {
 
     @Override
     public int compareTo(DayEvent o) {
-        String regExTime = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
         if (validateTimeFormat(o.getTime()) && validateTimeFormat(this.getTime())) {
             LocalTime thisTime = LocalTime.parse(this.getTime());
             LocalTime thatTime = LocalTime.parse(o.getTime());
