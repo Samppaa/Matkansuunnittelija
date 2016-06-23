@@ -15,3 +15,5 @@ Yksinkertaisesti siis TravelPlanController ottaa vastaan käskyjä käyttöliitt
 
 Lukija voi ihmetellä miksi esim. TravelPlan-luokassa käytetään tavallista array tietotyyppiä tyyliin DayPlan[], vaikka voisi käyttää javan tarjoamaa ArrayList tietotyyppiä. Tämä on siksi, että GSON:in(jsonin käsittely luokka) on helppo serialisoida luokka json-muotoon, kun käytetään yksinkertaisia tietotyyppejä.
 
+ErrorManager on myös toteutettu singletontyylillä, ja sillä on vain yksi käytettävissä oleva metodi `getStringForErrorCode(StatusCode code)`, joka palauttaa tekstuaalisen esityksen virhekoodille.
+
