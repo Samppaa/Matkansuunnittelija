@@ -39,7 +39,7 @@ public class HTMLTravelPlanGeneratorTest {
         TravelPlan plan = new TravelPlan("Test plan", TravelPlan.convertStringToDate("01.01.2012"), TravelPlan.convertStringToDate("02.01.2012"));
         plan.addNewDayEventToDayPlan("Päivä 1", "Test 1", "05:30", "Test desc");
         plan.addNewDayEventToDayPlan("Päivä 2", "Test 2", "05:35", "Test desc2");
-        String wanted = "<!DOCTYPE html>\n<html>\n<head>\n<style>\ntable, th, td {\nborder: 1px solid black;\nborder-collapse: collapse;\n}\nth, td {\npadding: 5px;\ntext-align: left;\n}\n</style>\n</head>\n<h1>Test plan 01.01.2012 - 02.01.2012</h1>\n<br>\n<h3>Päivä 1</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:30</td>\n<td>Test 1</td>\n<td>Test desc</td>\n</tr>\n</table>\n<h3>Päivä 2</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:35</td>\n<td>Test 2</td>\n<td>Test desc2</td>\n</tr>\n</table>\n</body>\n</html>";
+        String wanted = "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<style>\ntable, th, td {\nborder: 1px solid black;\nborder-collapse: collapse;\n}\nth, td {\npadding: 5px;\ntext-align: left;\n}\n</style>\n</head>\n<h1>Test plan 01.01.2012 - 02.01.2012</h1>\n<br>\n<h3>Päivä 1</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:30</td>\n<td>Test 1</td>\n<td>Test desc</td>\n</tr>\n</table>\n<h3>Päivä 2</h3>\n<table style=\"width:100%\">\n<tr>\n<th>Aika</th>\n<th>Nimi</th>\n<th>Kuvaus</th>\n</tr>\n<tr>\n<td>05:35</td>\n<td>Test 2</td>\n<td>Test desc2</td>\n</tr>\n</table>\n</body>\n</html>";
         assertEquals(wanted, HTMLTravelPlanGenerator.generateHTMLPage(plan));
     }
     

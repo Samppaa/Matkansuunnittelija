@@ -46,6 +46,15 @@ public class HTMLBuilder {
     static public String generateHTMLPageBodyStart() {
         return "<body>\n";
     }
+    
+    /**
+     * Luo charset tagin, joka määrittää dokumentin charsetin
+     * @param charSet Esim UTF-8
+     * @return Meta tagi charsetillä
+     */
+    static public String generateHTMLMetaCharSet(String charSet) {
+        return "<meta charset=\"" + charSet + "\">\n";
+    }
 
     /**
      * Generoi HTML-dokumentin tietyllä tyylillä ja bodylla.
@@ -56,6 +65,7 @@ public class HTMLBuilder {
     static public String generateDocument(String cssStyle, String bodyContent) {
         StringBuilder webPageGenerator = new StringBuilder();
         webPageGenerator.append(HTMLBuilder.generateHTMLPageHeader());
+        webPageGenerator.append(HTMLBuilder.generateHTMLMetaCharSet("UTF-8"));
         webPageGenerator.append(cssStyle);
         webPageGenerator.append(HTMLBuilder.generateHTMLPageHeaderClosure());
         webPageGenerator.append(bodyContent);

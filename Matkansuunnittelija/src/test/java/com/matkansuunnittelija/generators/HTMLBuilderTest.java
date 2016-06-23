@@ -93,4 +93,9 @@ public class HTMLBuilderTest {
         assertEquals("</body>\n</html>", HTMLBuilder.generateHTMLPageFooter());
     }
     
+    @Test
+    public void testGenerateHTMLMetaCharset() {
+        assertEquals("<meta charset=\"UTF-8\">\n", HTMLBuilder.generateHTMLMetaCharSet("UTF-8"));
+    }
+    
 }
