@@ -39,7 +39,8 @@ public class TravelPlanControllerTest {
     }
     
     @After
-    public void tearDown() {
+    public void tearDown() throws IOException {
+        controller.clearAllPlans();
     }
     
     private void addValidPlan() {

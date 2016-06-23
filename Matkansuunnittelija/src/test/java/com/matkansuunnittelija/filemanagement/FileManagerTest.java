@@ -50,7 +50,8 @@ public class FileManagerTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws IOException {
+        manager.clearAllPlans();
     }
     
     @Test
