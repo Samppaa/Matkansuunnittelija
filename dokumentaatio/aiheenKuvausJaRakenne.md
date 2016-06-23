@@ -1,7 +1,7 @@
 # Aihe: Matkansuunnittelija
 ##### Ohjelma jolla voi luoda ja käsitellä matkasuunnitelmia
 
-Matkansuunnittelija on ohjelma, jolla käyttäjä voi luoda matkasuunnitelmia tuleville matkoilleen. Matkasuunnitelmiin voi lisätä mielivaltaisen määrän päiviä, ja jokaiselle päivälle voi laatia oman aikataulun. Ohjelma mahdollistaa matkasuunnitelmien tallentamisen tulostettavassa HTML-muodossa. Ohjelmalla on myös mahdollista arkistoida matkasuunnitelmia.
+Matkansuunnittelija on ohjelma, jolla käyttäjä voi luoda matkasuunnitelmia tuleville matkoilleen. Matkasuunnitelmiin voi lisätä valitun määrän päiviä, ja jokaiselle päivälle voi laatia oman aikataulun. Ohjelma mahdollistaa matkasuunnitelmien tallentamisen tulostettavassa HTML-muodossa. Ohjelmalla on myös mahdollista arkistoida matkasuunnitelmia.
 
 **Käyttäjät:** Ohjelman käyttäjä
 
@@ -13,6 +13,7 @@ Lähtökohtana on, että ohjelmassa on vain yksi käyttäjätyyppi, eikä mukana
 - Matkasuunnitelman poistaminen
 - Matkasuunnitelman muokkaaminen
 - Matkasuunnitelman ottaminen ulos järjestelmästä siistissä tulostettavassa muodossa(mahdollisesti esim html)
+- Matkasuunnitelman arkistointi
 
 ##### Luokkakaavio
 ![Luokkakaavio](/dokumentaatio/luokkakaavio.png)
