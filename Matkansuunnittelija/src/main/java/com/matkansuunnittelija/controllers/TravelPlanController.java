@@ -1,7 +1,7 @@
 package com.matkansuunnittelija.controllers;
 
 import com.matkansuunnittelija.filemanagement.FileManager;
-import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.errormanager.StatusCode;
 import com.matkansuunnittelija.generators.HTMLTravelPlanGenerator;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
 import java.io.IOException;

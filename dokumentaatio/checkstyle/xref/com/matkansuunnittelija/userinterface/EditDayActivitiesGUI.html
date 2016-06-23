@@ -8,7 +8,7 @@
 <div id="overview"><a href="../../../../apidocs/com/matkansuunnittelija/userinterface/EditDayActivitiesGUI.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.matkansuunnittelija.userinterface;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.StatusCode;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.errormanager.StatusCode;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.controllers.TravelPlanController;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.travelplanobjects.DayEvent;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.travelplanobjects.TravelPlan;
@@ -206,7 +206,7 @@
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> deleteSelectedActivityButtonActionPerformed(java.awt.event.ActionEvent evt) {<em class="jxr_comment">//GEN-FIRST:event_deleteSelectedActivityButtonActionPerformed</em>
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>         <strong class="jxr_keyword">if</strong> (activitiesList.getSelectedIndex() != -1) {
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>             <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> code = controller.deleteDayEventFromDayPlan(plan.getName(), dayPlanName, getNameForSelectedItem());
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>             <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> code = controller.deleteDayEventFromDayPlan(plan.getName(), dayPlanName, getNameForSelectedItem());
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>             <strong class="jxr_keyword">switch</strong> (code) {
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>                 <strong class="jxr_keyword">case</strong> STATUS_TRAVEL_PLAN_REMOVE_EVENT_SUCCEED:
 <a class="jxr_linenumber" name="L204" href="#L204">204</a>                     <strong class="jxr_keyword">int</strong> index = activitiesList.getSelectedIndex();

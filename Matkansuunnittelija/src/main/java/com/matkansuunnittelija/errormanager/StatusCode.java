@@ -1,4 +1,4 @@
-package com.matkansuunnittelija;
+package com.matkansuunnittelija.errormanager;
 
 /**
  * Tilakoodi joka helpottaa eri viestien käsittelyä.

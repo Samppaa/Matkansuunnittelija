@@ -60,20 +60,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.StatusCode.java">com/matkansuunnittelija/StatusCode.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.generators.HTMLTravelPlanGenerator.java">com/matkansuunnittelija/generators/HTMLTravelPlanGenerator.java</a>
                 </td>
                 <td>
@@ -159,6 +145,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.userinterface.EditTravelPlanGUI.java">com/matkansuunnittelija/userinterface/EditTravelPlanGUI.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.matkansuunnittelija.errormanager.StatusCode.java">com/matkansuunnittelija/errormanager/StatusCode.java</a>
                 </td>
                 <td>
                   0

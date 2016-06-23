@@ -1,6 +1,6 @@
 package com.matkansuunnittelija.controllers;
 
-import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.errormanager.StatusCode;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;

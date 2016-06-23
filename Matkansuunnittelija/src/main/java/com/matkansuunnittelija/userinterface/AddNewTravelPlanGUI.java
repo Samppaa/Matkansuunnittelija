@@ -1,6 +1,6 @@
 package com.matkansuunnittelija.userinterface;
 
-import com.matkansuunnittelija.StatusCode;
+import com.matkansuunnittelija.errormanager.StatusCode;
 import com.matkansuunnittelija.controllers.TravelPlanController;
 import com.matkansuunnittelija.errormanager.ErrorManager;
 import javax.swing.JOptionPane;

@@ -9,7 +9,7 @@
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.matkansuunnittelija.controllers;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.filemanagement.FileManager;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.StatusCode;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.errormanager.StatusCode;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.generators.HTMLTravelPlanGenerator;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.matkansuunnittelija.travelplanobjects.TravelPlan;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.io.IOException;
@@ -89,7 +89,7 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     * @param dayEventName Matkasuunnitelman päivän sisällä olevan tapahtuman nimi</em>
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> deleteDayEventFromDayPlan(String travelPlanName, String dayPlanName, String dayEventName) {
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              fileManager.deleteDayEventFromDayPlan(travelPlanName, dayPlanName, dayEventName);
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>          } <strong class="jxr_keyword">catch</strong> (IOException ex) {
@@ -126,7 +126,7 @@
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * @param dayEventDescription Tapahtuman kuvaus</em>
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui</em>
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> addDayEventToDayPlan(String travelPlanName, String dayPlanName, String dayEventName, String dayEventTime, String dayEventDescription) {
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>         <strong class="jxr_keyword">if</strong> (!validateTimeFormat(dayEventTime)) {
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>             <strong class="jxr_keyword">return</strong> StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT;
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>         }
@@ -144,7 +144,7 @@
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_SUCCEED;
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> validateTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">private</strong> <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> validateTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>         <strong class="jxr_keyword">if</strong> (fileManager.doesTravelPlanExist(name)) {
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>             <strong class="jxr_keyword">return</strong> StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_ALREADY_EXISTS;
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>         }
@@ -234,9 +234,9 @@
 <a class="jxr_linenumber" name="L226" href="#L226">226</a> <em class="jxr_javadoccomment">     * @param endDate Matkasuunnitelman lopetuspäivämäärä</em>
 <a class="jxr_linenumber" name="L227" href="#L227">227</a> <em class="jxr_javadoccomment">     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui</em>
 <a class="jxr_linenumber" name="L228" href="#L228">228</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> createNewTravelPlan(String name, LocalDate startDate, LocalDate endDate) {
 <a class="jxr_linenumber" name="L230" href="#L230">230</a> 
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>         <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> code = validateTravelPlan(name, startDate, endDate);
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>         <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> code = validateTravelPlan(name, startDate, endDate);
 <a class="jxr_linenumber" name="L232" href="#L232">232</a>         <strong class="jxr_keyword">if</strong> (code != StatusCode.STATUS_TRAVEL_PLAN_INFO_OK) {
 <a class="jxr_linenumber" name="L233" href="#L233">233</a>             <strong class="jxr_keyword">return</strong> code;
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>         }
@@ -258,7 +258,7 @@
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     * @param endDate Matkasuunnitelman lopetuspäivämäärä</em>
 <a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     * @return StatusCode Statuskoodi joka kertoo miten tapahtuma suoriutui</em>
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/StatusCode.html">StatusCode</a> createNewTravelPlan(String name, String startDate, String endDate) {
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>     <strong class="jxr_keyword">public</strong> <a href="../../../com/matkansuunnittelija/errormanager/StatusCode.html">StatusCode</a> createNewTravelPlan(String name, String startDate, String endDate) {
 <a class="jxr_linenumber" name="L254" href="#L254">254</a> 
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>         <strong class="jxr_keyword">if</strong> (!validateDateFormat(startDate) || !validateDateFormat(endDate)) {
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>             <strong class="jxr_keyword">return</strong> StatusCode.STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT;

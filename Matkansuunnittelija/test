@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+text-align: left;
+}
+</style>
+</head>
+<h1>Test plan 01.01.2012 - 02.01.2012</h1>
+<br>
+<h3>Päivä 1</h3>
+<table style="width:100%">
+<tr>
+<th>Aika</th>
+<th>Nimi</th>
+<th>Kuvaus</th>
+</tr>
+</table>
+<h3>Päivä 2</h3>
+<table style="width:100%">
+<tr>
+<th>Aika</th>
+<th>Nimi</th>
+<th>Kuvaus</th>
+</tr>
+</table>
+</body>
+</html>

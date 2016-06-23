@@ -1,6 +1,5 @@
 package com.matkansuunnittelija.errormanager;
 
-import com.matkansuunnittelija.StatusCode;
 import java.util.HashMap;
 
 /**
