@@ -2,9 +2,13 @@ package com.matkansuunnittelija.userinterface;
 
 import com.matkansuunnittelija.controllers.TravelPlanController;
 import com.matkansuunnittelija.travelplanobjects.TravelPlan;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -89,9 +93,10 @@ public class MatkansuunnittelijaGUI extends javax.swing.JFrame {
         if (!fileName.endsWith(".html")) {
             fileName += ".html";
         }
-        try (FileWriter fw = new FileWriter(fileName)) {
-            fw.write(travelPlanController.generateHTMLForTravelPlan(plan.getName()));
-            fw.close();
+        
+        try (Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"));) {
+            out.write(travelPlanController.generateHTMLForTravelPlan(plan.getName()));
+            out.close();
         } catch (IOException ex) {
             // Dialog box here
         }
