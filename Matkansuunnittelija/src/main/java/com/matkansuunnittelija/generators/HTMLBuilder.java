@@ -48,7 +48,7 @@ public class HTMLBuilder {
     }
     
     /**
-     * Luo charset tagin, joka määrittää dokumentin charsetin
+     * Luo charset tagin, joka määrittää dokumentin charsetin.
      * @param charSet Esim UTF-8
      * @return Meta tagi charsetillä
      */

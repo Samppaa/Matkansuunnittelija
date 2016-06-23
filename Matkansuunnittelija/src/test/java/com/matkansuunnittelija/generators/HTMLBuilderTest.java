@@ -42,7 +42,7 @@ public class HTMLBuilderTest {
     @Test
     public void testGenerateDocument() {
         String page = HTMLBuilder.generateDocument("", "");
-        assertEquals("<!DOCTYPE html>\n<html>\n<head>\n</head>\n</body>\n</html>", page);
+        assertEquals("<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n</head>\n</body>\n</html>", page);
     }
 
 
