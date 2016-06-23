@@ -109,7 +109,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="33" red="33" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="P&#xe4;iv&#xe4;m&#xe4;&#xe4;r&#xe4;n tulee olla muotoa dd.mm.yyyy(esim. 10.11.2012)"/>
+        <Property name="text" type="java.lang.String" value="P&#xe4;iv&#xe4;m&#xe4;&#xe4;r&#xe4;n tulee olla muotoa dd.mm.yyyy(esim. 01.05.2012)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="travelPlanStartDateLabel">

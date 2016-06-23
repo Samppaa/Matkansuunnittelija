@@ -125,6 +125,9 @@ public class TravelPlanController {
         if (fileManager.dayPlanHasDayEventWithTime(travelPlanName, dayPlanName, dayEventTime)) {
             return StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS;
         }
+        if (dayEventName.contains("-")) {
+            return StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_ILLEGAL_CHARACTER;
+        }
         try {
             fileManager.addDayEventToDayPlan(travelPlanName, dayPlanName, dayEventName, dayEventTime, dayEventDescription);
         } catch (IOException ex) {

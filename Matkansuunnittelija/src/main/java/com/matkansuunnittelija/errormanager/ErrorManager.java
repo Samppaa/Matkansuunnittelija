@@ -45,7 +45,8 @@ public class ErrorManager {
         addErrorCode(StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_FILE_NOT_FOUND, "Vakava virhe: Tietokanta tiedostoa ei löytynyt");
         addErrorCode(StatusCode.STATUS_TRAVEL_PLAN_CREATE_FAIL_START_DATE_AFTER_END_DATE, "Matkan päättymispäivä on ennen alkamispäivää tai samana päivänä");
         addErrorCode(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_FORMAT_WRONG_FORMAT, "Aika on väärässä muodossa. Oikea muoto: HH:mm(Esimerkiksi 02:20)");
-        addErrorCode(StatusCode.STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT, "Päivämäärä on väärää muotoa. Oikea muoto on dd.mm.yyyy. Esimerkiksi 12.11.2012");
+        addErrorCode(StatusCode.STATUS_TRAVREL_PLAN_CREATE_FAIL_DATE_WRONG_FORMAT, "Päivämäärä on väärää muotoa. Oikea muoto on dd.mm.yyyy. Esimerkiksi 05.11.2012");
         addErrorCode(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_TIME_ALREADY_EXISTS, "Samaan aikaan on jo aktiviteetti. Valitse eri aika.");
+        addErrorCode(StatusCode.STATUS_TRAVEL_PLAN_ADD_EVENT_ILLEGAL_CHARACTER, "Tapahtuman nimi sisältää merkin, joka ei ole sallittu");
     }
 }

@@ -57,7 +57,7 @@ public class AddNewTravelPlanGUI extends javax.swing.JDialog {
         });
 
         infoLabel.setForeground(new java.awt.Color(51, 51, 0));
-        infoLabel.setText("Päivämäärän tulee olla muotoa dd.mm.yyyy(esim. 10.11.2012)");
+        infoLabel.setText("Päivämäärän tulee olla muotoa dd.mm.yyyy(esim. 01.05.2012)");
 
         travelPlanStartDateLabel.setText("Matkan alkamispäivämäärä:");
 
